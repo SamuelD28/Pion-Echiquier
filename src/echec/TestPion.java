@@ -9,21 +9,25 @@ import junit.framework.TestCase;
  * @author Samuel Dubé
  */
 public class TestPion extends TestCase {
+
+    public static final String BLANC = "blanc";
+    public static final String VERT = "vert";
+    public static final String NOIR = "noir";
+
     /** Test la création d'un pion */
     public void testCreer() {
-        String couleurPion = "vert";
-        String positionPion = "a1";
-        Pion pion = new Pion(couleurPion, positionPion);
-        assertEquals(couleurPion, pion.getCouleur());
-        assertEquals(positionPion, pion.getPosition());
+        Pion pion1 = new Pion(VERT);
+        assertEquals(VERT, pion1.getCouleur());
 
-        String couleurPion2 = "vert";
-        String positionPion2 = "b2";
-        Pion pion2 = new Pion(couleurPion2, positionPion2);
-        assertEquals(couleurPion2, pion2.getCouleur());
-        assertEquals(positionPion2, pion2.getPosition());
+        Pion pion2 = new Pion(NOIR);
+        assertEquals(NOIR, pion2.getCouleur());
 
-        assertEquals(couleurPion, pion.getCouleur());
-        assertEquals(positionPion, pion.getPosition());
+        Pion pion3 = new Pion();
+        assertEquals(BLANC, pion3.getCouleur());
+
+        assertEquals(VERT, pion1.getCouleur());
+        assertEquals(NOIR, pion2.getCouleur());
+        assertEquals(BLANC, pion3.getCouleur());
     }
 }
+

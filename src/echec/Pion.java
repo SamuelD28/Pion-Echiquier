@@ -9,21 +9,19 @@ package echec;
 public class Pion {
     /** La couleur du pion */
     private String m_couleur;
-    /** La position du pion sur l'échiquier */
-    private String m_position;
+
+    public Pion() {
+        m_couleur = "blanc";
+    }
 
     /**
      * Constructeur
      *
      * @param p_couleur La couleur du pion
-     * @param p_position La position du pion sur l'échiquier
      */
-    Pion(String p_couleur, String p_position) {
+    Pion(String p_couleur) {
         m_couleur = p_couleur;
-        m_position = p_position;
     }
 
     public String getCouleur() { return m_couleur; }
-
-    public String getPosition() { return m_position; }
 }
