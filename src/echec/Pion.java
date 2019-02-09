@@ -6,13 +6,8 @@ package echec;
  * @author Samuel Colassin
  * @author Samuel Dubé
  */
-public class Pion {
-    /** La couleur du pion */
+class Pion {
     private String m_couleur;
-
-    public Pion() {
-        m_couleur = "blanc";
-    }
 
     /**
      * Constructeur
@@ -23,5 +18,14 @@ public class Pion {
         m_couleur = p_couleur;
     }
 
-    public String getCouleur() { return m_couleur; }
+    /**
+     * Constructeur sans paramètre avec une couleur par défaut
+     */
+    Pion() {
+        m_couleur = "blanc";
+    }
+
+    String getCouleur() {
+        return m_couleur;
+    }
 }
