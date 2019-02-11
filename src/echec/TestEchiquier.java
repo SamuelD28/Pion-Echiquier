@@ -12,18 +12,22 @@ public class TestEchiquier extends TestCase {
 
     private Echiquier m_echiquier;
 
+    //TODO Doit-on ajouter un commentaire dans un setup?
     public void setUp() {
         m_echiquier = new Echiquier();
     }
 
-    /** Test la création d'un échiquier */
+    /**
+     * Test la création d'un échiquier
+     */
     public void testCreer() {
         assertEquals(0, m_echiquier.getNombrePions());
     }
 
-    /** Test l'ajout d'un pion dans un échiquier */
+    /**
+     * Test l'ajout d'un pion dans un échiquier
+     */
     public void testAjouterPion() {
-
         Pion pion = new Pion();
         m_echiquier.ajouterPion(pion, "a1");
         assertEquals(1 , m_echiquier.getNombrePions());

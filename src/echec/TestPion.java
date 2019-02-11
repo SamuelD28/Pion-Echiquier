@@ -9,12 +9,13 @@ import junit.framework.TestCase;
  * @author Samuel Dubé
  */
 public class TestPion extends TestCase {
+    static final String BLANC = "blanc";
+    static final String VERT = "vert";
+    static final String NOIR = "noir";
 
-    public static final String BLANC = "blanc";
-    public static final String VERT = "vert";
-    public static final String NOIR = "noir";
-
-    /** Test la création d'un pion */
+    /**
+     * Test la création d'un pion
+     */
     public void testCreer() {
         Pion pion1 = new Pion(VERT);
         assertEquals(VERT, pion1.getCouleur());

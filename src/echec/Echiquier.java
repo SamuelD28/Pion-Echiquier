@@ -12,12 +12,23 @@ class Echiquier{
     /** Liste de tous les pions dans l'échiquier */
     private LinkedHashMap<String, Pion> m_pions = new LinkedHashMap<>();
 
-    Pion getPion(String p_position) {
-        return m_pions.get(p_position);
-    }
-
+    /**
+     * Calcule le nombre de pion dans l'échiquier
+     *
+     * @return Le nombre de pion dans l'échiquier
+     */
     int getNombrePions() {
         return m_pions.size();
+    }
+
+    /**
+     * Indique le pion à la position donnée
+     *
+     * @param p_position La position du pion désiré
+     * @return Le pion à la position donnée
+     */
+    Pion getPion(String p_position) {
+        return m_pions.get(p_position);
     }
 
     /**
