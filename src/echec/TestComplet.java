@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Regroupe tous les tests de notre package echec
+ * Regroupe tous les tests du package echec
  *
  * @author Samuel Dubé
  * @author Samuel Colassin

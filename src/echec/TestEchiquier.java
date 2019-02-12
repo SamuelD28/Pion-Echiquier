@@ -3,7 +3,7 @@ package echec;
 import junit.framework.TestCase;
 
 /**
- * Test de la classe Echiquier
+ * Tests de la classe Echiquier
  *
  * @author Samuel Dubé
  * @author Samuel Colassin
@@ -13,7 +13,7 @@ public class TestEchiquier extends TestCase {
     private Echiquier m_echiquier;
 
     /**
-     * Réinitialise l'échiquier à chaque réexécution des tests
+     * Réinitialise l'échiquier à chaque exécution des tests
      */
     public void setUp() {
         m_echiquier = new Echiquier();
