@@ -9,7 +9,6 @@ import junit.framework.TestCase;
  * @author Samuel Colassin
  */
 public class TestEchiquier extends TestCase {
-
     private Echiquier m_echiquier;
 
     /**
