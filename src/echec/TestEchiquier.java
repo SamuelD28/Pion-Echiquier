@@ -12,7 +12,9 @@ public class TestEchiquier extends TestCase {
 
     private Echiquier m_echiquier;
 
-    //TODO Doit-on ajouter un commentaire dans un setup?
+    /**
+     * Réinitialise l'échiquier à chaque réexécution des tests
+     */
     public void setUp() {
         m_echiquier = new Echiquier();
     }

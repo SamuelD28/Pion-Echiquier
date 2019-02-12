@@ -8,7 +8,7 @@ import java.util.LinkedHashMap;
  * @author Samuel Colassin
  * @author Samuel Dubé
  */
-class Echiquier{
+class Echiquier {
     /** Liste de tous les pions dans l'échiquier */
     private LinkedHashMap<String, Pion> m_pions = new LinkedHashMap<>();
 
