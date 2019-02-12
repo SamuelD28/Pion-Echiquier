@@ -33,11 +33,13 @@ public class TestEchiquier extends TestCase {
         m_echiquier.ajouterPion(pion, "a1");
         assertEquals(1 , m_echiquier.getNombrePions());
         assertEquals(pion, m_echiquier.getPion("a1"));
+        assertEquals(TestPion.BLANC, m_echiquier.getPion("a1").getCouleur());
 
         Pion pion2 = new Pion(TestPion.NOIR);
         m_echiquier.ajouterPion(pion2, "b6");
         assertEquals(2 , m_echiquier.getNombrePions());
         assertEquals(pion2, m_echiquier.getPion("b6"));
+        assertEquals(TestPion.NOIR, m_echiquier.getPion("b6").getCouleur());
 
         assertEquals(pion, m_echiquier.getPion("a1"));
     }
