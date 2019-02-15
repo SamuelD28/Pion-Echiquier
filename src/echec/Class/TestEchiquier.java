@@ -52,7 +52,6 @@ public class TestEchiquier extends TestCase {
     public void testInitialiser() {
 
         m_echiquier.initialiser();
-
         String representationEhciquier =    "XXXXXXXX\n" +
                                             "PPPPPPPP\n" +
                                             "XXXXXXXX\n" +
@@ -61,9 +60,9 @@ public class TestEchiquier extends TestCase {
                                             "XXXXXXXX\n" +
                                             "pppppppp\n" +
                                             "XXXXXXXX\n";
-
         System.out.println(m_echiquier.toString());
-        m_echiquier.toString();
+
+        assertEquals(16, m_echiquier.getNombrePions());
         assertEquals(representationEhciquier, m_echiquier.toString());
     }
 }
