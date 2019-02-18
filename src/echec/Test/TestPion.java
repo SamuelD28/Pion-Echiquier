@@ -1,10 +1,10 @@
-package echec.Class;
+package echec.Test;
 
-import echec.Test.Pion;
+import echec.Class.Pion;
 import junit.framework.TestCase;
 
-import static echec.Test.Pion.Couleur.BLANC;
-import static echec.Test.Pion.Couleur.NOIR;
+import static echec.Class.Pion.Couleur.BLANC;
+import static echec.Class.Pion.Couleur.NOIR;
 
 /**
  * Tests de la classe Pion
@@ -14,7 +14,7 @@ import static echec.Test.Pion.Couleur.NOIR;
  */
 public class TestPion extends TestCase {
     /**
-     * Test la création d'un pion
+     * Method testant la creatino d'un pion
      */
     public void testCreer() {
 

@@ -1,11 +1,11 @@
-package echec.Class;
+package echec.Test;
 
-import echec.Test.Echiquier;
-import echec.Test.Pion;
+import echec.Class.Echiquier;
+import echec.Class.Pion;
 import junit.framework.TestCase;
 
-import static echec.Test.Pion.Couleur.BLANC;
-import static echec.Test.Pion.Couleur.NOIR;
+import static echec.Class.Pion.Couleur.BLANC;
+import static echec.Class.Pion.Couleur.NOIR;
 
 /**
  * Tests de la classe Echiquier
@@ -14,6 +14,7 @@ import static echec.Test.Pion.Couleur.NOIR;
  * @author Samuel Colassin
  */
 public class TestEchiquier extends TestCase {
+
     private Echiquier m_echiquier;
 
     /**
@@ -49,9 +50,17 @@ public class TestEchiquier extends TestCase {
         assertEquals(pion, m_echiquier.getPion("a1"));
     }
 
+    /**
+     * Methode testant l'initialisation d'un echiquier. Vérifie
+     * que les pièces sont bel et bien au bon endroit et que le
+     * nombre de pièces correspond également.
+     */
     public void testInitialiser() {
 
         m_echiquier.initialiser();
+        m_echiquier.seedPions(BLANC, 6);
+        m_echiquier.seedPions(NOIR, 1);
+
         String representationEhciquier =    "XXXXXXXX\n" +
                                             "PPPPPPPP\n" +
                                             "XXXXXXXX\n" +

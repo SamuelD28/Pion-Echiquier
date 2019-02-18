@@ -1,6 +1,6 @@
-package echec.Test;
+package echec.Class;
 
-import static echec.Test.Pion.Couleur.*;
+import static echec.Class.Pion.Couleur.*;
 
 /**
  * Pion de base
@@ -10,7 +10,9 @@ import static echec.Test.Pion.Couleur.*;
  */
 public class Pion {
 
-    //On vas surment extraire sa dans une classe parente plus tard//
+    /**
+     * Enum représentant les couleurs qu'un pion peut avoir.
+     */
     public enum Couleur {
         BLANC,
         NOIR
@@ -19,7 +21,7 @@ public class Pion {
     /**
      * Variables membres de la classes
      */
-    private Couleur m_couleur;
+    private final Couleur m_couleur;
     private char m_representation;
 
     /**
