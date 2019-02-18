@@ -2,10 +2,13 @@ package echec.Test;
 
 import echec.Class.Echiquier;
 import echec.Class.Pion;
+import echec.Class.Position;
+import echec.Class.Position.PositionInvalideException;
 import junit.framework.TestCase;
 
 import static echec.Class.Pion.Couleur.BLANC;
 import static echec.Class.Pion.Couleur.NOIR;
+import static echec.Class.Position.PositionInvalideException.*;
 
 /**
  * Tests de la classe Echiquier
@@ -49,8 +52,14 @@ public class TestEchiquier extends TestCase {
 
         assertEquals(pion, m_echiquier.getPion("a1"));
 
-        assertFalse(m_echiquier.ajouterPion(pion2, "zz"));
-        assertEquals(2, m_echiquier.getNombrePions());
+        try{
+            m_echiquier.ajouterPion(pion2, "zz");
+        }
+        catch(PositionInvalideException e){
+            assertEquals(ERR_POSITION_INVALIDE, e.getMessage());
+            assertEquals(2, m_echiquier.getNombrePions());
+        }
+
     }
 
     /**

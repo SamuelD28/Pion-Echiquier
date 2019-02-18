@@ -107,7 +107,7 @@ public class Position {
      */
     private static boolean estDansLesLimites(int... p_positionXY) {
 
-        if (p_positionXY == null)
+        if (p_positionXY == null || p_positionXY.length < 2)
             return false;
 
         return (p_positionXY[0] >= 0 && p_positionXY[0] < TAILLE_ECHIQUIER)
