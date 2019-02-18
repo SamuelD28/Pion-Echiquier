@@ -1,8 +1,10 @@
 package echec.Test;
 
 import echec.Class.Position;
+import echec.Class.Position.PositionInvalideException;
 import junit.framework.TestCase;
 
+import static echec.Class.Position.PositionInvalideException.ERR_POSITION_INVALIDE;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
@@ -29,13 +31,13 @@ public class TestPosition extends TestCase {
         assertEquals(7, position2.getX());
         assertEquals(3, position2.getY());
 
-        //On verifie que la creation d'une position erronnee lance bel et bien une exception Illegal argument
+        //On verifie que la creation d'une position erronnee lance belle et bien une exception de type position invalide
         try {
             new Position("AAAAA");
             new Position(19, 22);
             fail();
-        } catch (IllegalArgumentException e) {
-            assertEquals("La position est invalide", e.getMessage());
+        } catch (PositionInvalideException e) {
+            assertEquals(ERR_POSITION_INVALIDE, e.getMessage());
         }
     }
 

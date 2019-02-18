@@ -15,6 +15,27 @@ import static echec.Class.Echiquier.TAILLE_ECHIQUIER;
  */
 public class Position {
 
+
+    /**
+     * Classe contenant une excpetion qui est lancer
+     * lorsque la position passee au constructeur est
+     * invalide.
+     *
+     * @author Samuel Dube
+     * @author Samuel Colassin
+     */
+    public class PositionInvalideException extends RuntimeException {
+        public static final String ERR_POSITION_INVALIDE = "La position specifier est invalide";
+
+        /**
+         * Constructeur de base pour une exception
+         * de type position invalide.
+         */
+        PositionInvalideException() {
+            super(ERR_POSITION_INVALIDE);
+        }
+    }
+
     //Constante utiliser pour mapper une lettre a une position dans un echiquier
     private final static List<Character> ECHELLE_POSITIONX = Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H');
     private int m_X;
@@ -37,7 +58,7 @@ public class Position {
             m_X = positionXY[0];
             m_Y = positionXY[1];
         } else
-            throw new IllegalArgumentException("La position est invalide");
+            throw new PositionInvalideException();
     }
 
     /**
@@ -55,7 +76,7 @@ public class Position {
             m_X = p_positionXY[0];
             m_Y = p_positionXY[1];
         } else
-            throw new IllegalArgumentException("La position est invalide");
+            throw new PositionInvalideException();
     }
 
     /**
