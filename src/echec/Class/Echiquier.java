@@ -37,7 +37,7 @@ public class Echiquier {
      */
     public void seedPions(Couleur p_couleur, int p_range) {
         for (int positionX = 0; positionX < TAILLE_ECHIQUIER; positionX++) {
-            Position positionPion = Position.creer(positionX, p_range);
+            Position positionPion = new Position(positionX, p_range);
             Pion pion = new Pion(p_couleur);
             m_pions.put(positionPion, pion);
             m_echiquier[positionPion.getY()][positionPion.getX()] = pion.getRepresentation();
@@ -46,7 +46,7 @@ public class Echiquier {
 
     /**
      * Methode retournant le nombre de pions total de
-     * l'échiquier courant
+     * l'échiquier courant.
      *
      * @return Le nombre de pion total dans l'échiquier.
      */
@@ -62,7 +62,7 @@ public class Echiquier {
      * @return Le pion à la position donnée
      */
     public Pion getPion(String p_position) {
-        Position position = Position.creer(p_position);
+        Position position = new Position(p_position);
         return m_pions.get(position);
     }
 
@@ -73,13 +73,15 @@ public class Echiquier {
      * @param p_position La position du pion qu'on ajoute
      */
     public boolean ajouterPion(Pion p_pion, String p_position) {
-        Position position = Position.creer(p_position);
-
-        if (position != null) {
+        try{
+            Position position = new Position(p_position);
             m_pions.put(position, p_pion);
             return true;
-        } else
+        }
+        catch(IllegalArgumentException e){
+            System.out.println(e.getMessage());
             return false;
+        }
     }
 
     /**

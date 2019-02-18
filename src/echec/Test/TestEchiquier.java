@@ -36,7 +36,7 @@ public class TestEchiquier extends TestCase {
      */
     public void testAjouterPion() {
         Pion pion = new Pion();
-        m_echiquier.ajouterPion(pion, "a1");
+        assertTrue(m_echiquier.ajouterPion(pion, "a1"));
         assertEquals(1, m_echiquier.getNombrePions());
         assertEquals(pion, m_echiquier.getPion("a1"));
         assertEquals(BLANC, m_echiquier.getPion("a1").getCouleur());
@@ -48,6 +48,9 @@ public class TestEchiquier extends TestCase {
         assertEquals(NOIR, m_echiquier.getPion("b6").getCouleur());
 
         assertEquals(pion, m_echiquier.getPion("a1"));
+
+        assertFalse(m_echiquier.ajouterPion(pion2, "zz"));
+        assertEquals(2, m_echiquier.getNombrePions());
     }
 
     /**
@@ -57,7 +60,9 @@ public class TestEchiquier extends TestCase {
      */
     public void testInitialiser() {
 
+        //On initialise l'echiquier avec des X
         m_echiquier.initialiser();
+        //On seed l'echiquier avec des pions tests
         m_echiquier.seedPions(BLANC, 6);
         m_echiquier.seedPions(NOIR, 1);
 
@@ -71,7 +76,9 @@ public class TestEchiquier extends TestCase {
                                             "XXXXXXXX\n";
         System.out.println(m_echiquier.toString());
 
+        //On teste le nombres de pions present sur l'echiquier
         assertEquals(16, m_echiquier.getNombrePions());
+        //On teste la representation graphique de l'echiquier
         assertEquals(representationEhciquier, m_echiquier.toString());
     }
 }
