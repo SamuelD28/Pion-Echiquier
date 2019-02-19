@@ -2,7 +2,6 @@ package echec.Test;
 
 import echec.Class.Echiquier;
 import echec.Class.Pion;
-import echec.Class.Position;
 import echec.Class.Position.PositionInvalideException;
 import junit.framework.TestCase;
 

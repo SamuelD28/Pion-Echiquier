@@ -15,6 +15,12 @@ import static echec.Class.Echiquier.TAILLE_ECHIQUIER;
  */
 public class Position {
 
+    //Constante utiliser pour mapper une lettre a une position dans un echiquier
+    private final static List<Character> ECHELLE_POSITIONX = Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H');
+
+    private int m_X;
+
+    private int m_Y;
 
     /**
      * Classe contenant une excpetion qui est lancer
@@ -35,11 +41,6 @@ public class Position {
             super(ERR_POSITION_INVALIDE);
         }
     }
-
-    //Constante utiliser pour mapper une lettre a une position dans un echiquier
-    private final static List<Character> ECHELLE_POSITIONX = Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H');
-    private int m_X;
-    private int m_Y;
 
     /**
      * Constructeur permettant d'initialiser une
@@ -151,10 +152,23 @@ public class Position {
             return false;
     }
 
+
+    /**
+     * Methode qui permet d"obtenir la
+     * position x de l'instance courante.
+     *
+     * @return La position x
+     */
     public int getX() {
         return m_X;
     }
 
+    /**
+     * Methode qui permet d"obtenir la
+     * position y de l'instance courante.
+     *
+     * @return La position ys
+     */
     public int getY() {
         return m_Y;
     }
