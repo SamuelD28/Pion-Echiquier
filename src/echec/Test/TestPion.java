@@ -17,7 +17,6 @@ public class TestPion extends TestCase {
      * Method testant la creatino d'un pion
      */
     public void testCreer() {
-
         Pion pion1 = new Pion(BLANC);
         assertEquals(BLANC, pion1.getCouleur());
         assertEquals('p', pion1.getRepresentation());

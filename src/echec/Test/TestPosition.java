@@ -50,22 +50,22 @@ public class TestPosition extends TestCase {
         Position position1 = new Position("A1");
 
         //Devrait change la position a 1,1
-        position1.Assigner("B2");
+        position1.assigner("B2");
 
         assertEquals(1, position1.getX());
         assertEquals(1, position1.getY());
 
         //Ne devrait pas modifier la position
-        assertFalse(position1.Assigner("ZZZZ"));
-        assertFalse(position1.Assigner(20, 20));
+        assertFalse(position1.assigner("ZZZZ"));
+        assertFalse(position1.assigner(20, 20));
 
         //la position devrait toujours etre 1,1
         assertEquals(1, position1.getX());
         assertEquals(1, position1.getY());
 
         //Devrait modifier la position a 3,3
-        assertTrue(position1.Assigner("C3"));
-        assertTrue(position1.Assigner(3, 3));
+        assertTrue(position1.assigner("C3"));
+        assertTrue(position1.assigner(3, 3));
 
         //La position devrait maintenant etre 3,3
         assertEquals(3, position1.getX());
@@ -83,10 +83,11 @@ public class TestPosition extends TestCase {
         Position position3 = new Position("C4"); //x,y = 2,3
 
         assertEquals(position1, position2);
+        // Ne semble pas fonctionner sans import de JUnit 4.xx et 5.13
+        assertNotEquals(position3, position1);
         assertNotEquals(position3, position2);
 
-        position1.Assigner("C4");
-
+        position1.assigner("C4");
         assertEquals(position1, position3);
         assertNotEquals(position1, position2);
     }

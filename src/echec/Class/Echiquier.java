@@ -11,8 +11,7 @@ import java.util.LinkedHashMap;
  * @author Samuel Dubé
  */
 public class Echiquier {
-
-    public final static int TAILLE_ECHIQUIER = 8;
+    final static int TAILLE_ECHIQUIER = 8;
     private final LinkedHashMap<Position, Pion> m_pions = new LinkedHashMap<>();
     private final char[][] m_echiquier = new char[TAILLE_ECHIQUIER][TAILLE_ECHIQUIER];
 
@@ -35,7 +34,7 @@ public class Echiquier {
      * @param p_couleur Couleur des pions a ajouter
      * @param p_range   Position de la rangee ou ajouter les pions
      */
-    public void seedPions(Couleur p_couleur, int p_range) {
+    public void placerPions(Couleur p_couleur, int p_range) {
         for (int positionX = 0; positionX < TAILLE_ECHIQUIER; positionX++) {
             Position positionPion = new Position(positionX, p_range);
             Pion pion = new Pion(p_couleur);

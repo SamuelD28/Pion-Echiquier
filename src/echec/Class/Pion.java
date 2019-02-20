@@ -9,7 +9,6 @@ import static echec.Class.Pion.Couleur.*;
  * @author Samuel Dubé
  */
 public class Pion {
-
     /**
      * Enum représentant les couleurs qu'un pion peut avoir.
      */
@@ -22,6 +21,7 @@ public class Pion {
      * Variables membres de la classes
      */
     private final Couleur m_couleur;
+
     private char m_representation;
 
     /**

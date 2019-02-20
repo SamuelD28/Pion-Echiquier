@@ -15,7 +15,7 @@ import static echec.Class.Echiquier.TAILLE_ECHIQUIER;
  */
 public class Position {
 
-    //Constante utiliser pour mapper une lettre a une position dans un echiquier
+    /** Constante utiliser pour mapper une lettre a une position dans un echiquier */
     private final static List<Character> ECHELLE_POSITIONX = Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H');
 
     private int m_X;
@@ -124,7 +124,7 @@ public class Position {
      * @param p_positionTextuelle Position textuelle a assigner l'instance
      * @return Vrai si l'assignation a reussi sinon retourne faux.
      */
-    public boolean Assigner(String p_positionTextuelle) {
+    public boolean assigner(String p_positionTextuelle) {
         int[] positionXY = parseTextuelleVersPositionXY(p_positionTextuelle);
 
         if (estDansLesLimites(positionXY)) {
@@ -143,7 +143,7 @@ public class Position {
      * @param p_positionXY Position coordonnee a assigner l'instance. [0] = x, [1] = y
      * @return Vrai si l'assignation a reussi sinon retourne faux.
      */
-    public boolean Assigner(int... p_positionXY) {
+    public boolean assigner(int... p_positionXY) {
         if (estDansLesLimites(p_positionXY)) {
             m_X = p_positionXY[0];
             m_Y = p_positionXY[1];

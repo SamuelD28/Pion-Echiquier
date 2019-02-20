@@ -16,7 +16,6 @@ import static echec.Class.Position.PositionInvalideException.*;
  * @author Samuel Colassin
  */
 public class TestEchiquier extends TestCase {
-
     private Echiquier m_echiquier;
 
     /**
@@ -58,7 +57,6 @@ public class TestEchiquier extends TestCase {
             assertEquals(ERR_POSITION_INVALIDE, e.getMessage());
             assertEquals(2, m_echiquier.getNombrePions());
         }
-
     }
 
     /**
@@ -71,8 +69,8 @@ public class TestEchiquier extends TestCase {
         //On initialise l'echiquier avec des X
         m_echiquier.initialiser();
         //On seed l'echiquier avec des pions tests
-        m_echiquier.seedPions(BLANC, 6);
-        m_echiquier.seedPions(NOIR, 1);
+        m_echiquier.placerPions(BLANC, 6);
+        m_echiquier.placerPions(NOIR, 1);
 
         String representationEhciquier =    "XXXXXXXX\n" +
                                             "PPPPPPPP\n" +
