@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
  */
 public class Echiquier {
     final static int TAILLE_ECHIQUIER = 8;
-    private final LinkedHashMap<Position, Pion> m_pions = new LinkedHashMap<>();
+    private final LinkedHashMap<Position, Object> m_pions = new LinkedHashMap<>();
     private final char[][] m_echiquier = new char[TAILLE_ECHIQUIER][TAILLE_ECHIQUIER];
 
     /**

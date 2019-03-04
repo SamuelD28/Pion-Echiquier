@@ -37,6 +37,7 @@ public class TestEchiquier extends TestCase {
      */
     public void testAjouterPion() {
         Pion pion = new Pion();
+        
         assertTrue(m_echiquier.ajouterPion(pion, "a1"));
         assertEquals(1, m_echiquier.getNombrePions());
         assertEquals(pion, m_echiquier.getPion("a1"));
