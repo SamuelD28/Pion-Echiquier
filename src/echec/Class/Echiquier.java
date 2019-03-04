@@ -2,7 +2,9 @@ package echec.Class;
 
 import echec.Class.Pion.Couleur;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * Echiquier de base permettant l'ajout de pion
@@ -27,19 +29,28 @@ public class Echiquier {
         }
     }
 
-    /**
-     * Methode TEMPORAIRE permettant de remplir une
-     * rangee de l'echiquier avec des pions.
-     *
-     * @param p_couleur Couleur des pions a ajouter
-     * @param p_range   Position de la rangee ou ajouter les pions
-     */
-    public void placerPions(Couleur p_couleur, int p_range) {
-        for (int positionX = 0; positionX < TAILLE_ECHIQUIER; positionX++) {
-            Position positionPion = new Position(positionX, p_range);
-            Pion pion = new Pion(p_couleur);
-            m_pions.put(positionPion, pion);
-            m_echiquier[positionPion.getY()][positionPion.getX()] = pion.getRepresentation();
+//    /**
+//     * Methode TEMPORAIRE permettant de remplir une
+//     * rangee de l'echiquier avec des pions.
+//     *
+//     * @param p_couleur Couleur des pions a ajouter
+//     * @param p_range   Position de la rangee ou ajouter les pions
+//     */
+//    public void placerPions(Couleur p_couleur, int p_range) {
+//        for (int positionX = 0; positionX < TAILLE_ECHIQUIER; positionX++) {
+//            Position positionPion = new Position(positionX, p_range);
+//            Pion pion = new Pion(p_couleur);
+//            m_pions.put(positionPion, pion);
+//            m_echiquier[positionPion.getY()][positionPion.getX()] = pion.getRepresentation();
+//        }
+//    }
+
+    public void placerPieces() {
+        ArrayList<Pion> pieces = Pion.obtenirTousLesPions();
+
+        for (Pion piece: pieces) {
+            m_pions.put(piece.getPosition(), piece);
+            m_echiquier[piece.getPosition().getY()][piece.getPosition().getX()] = piece.getRepresentation();
         }
     }
 

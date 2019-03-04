@@ -35,29 +35,29 @@ public class TestEchiquier extends TestCase {
     /**
      * Test l'ajout d'un pion dans un échiquier
      */
-    public void testAjouterPion() {
-        Pion pion = new Pion();
-        assertTrue(m_echiquier.ajouterPion(pion, "a1"));
-        assertEquals(1, m_echiquier.getNombrePions());
-        assertEquals(pion, m_echiquier.getPion("a1"));
-        assertEquals(BLANC, m_echiquier.getPion("a1").getCouleur());
-
-        Pion pion2 = new Pion(NOIR);
-        m_echiquier.ajouterPion(pion2, "b6");
-        assertEquals(2, m_echiquier.getNombrePions());
-        assertEquals(pion2, m_echiquier.getPion("b6"));
-        assertEquals(NOIR, m_echiquier.getPion("b6").getCouleur());
-
-        assertEquals(pion, m_echiquier.getPion("a1"));
-
-        try{
-            m_echiquier.ajouterPion(pion2, "zz");
-        }
-        catch(PositionInvalideException e){
-            assertEquals(ERR_POSITION_INVALIDE, e.getMessage());
-            assertEquals(2, m_echiquier.getNombrePions());
-        }
-    }
+//    public void testAjouterPion() {
+////        Pion pion = new Pion();
+////        assertTrue(m_echiquier.ajouterPion(pion, "a1"));
+////        assertEquals(1, m_echiquier.getNombrePions());
+////        assertEquals(pion, m_echiquier.getPion("a1"));
+////        assertEquals(BLANC, m_echiquier.getPion("a1").getCouleur());
+////
+////        Pion pion2 = new Pion(NOIR);
+////        m_echiquier.ajouterPion(pion2, "b6");
+////        assertEquals(2, m_echiquier.getNombrePions());
+////        assertEquals(pion2, m_echiquier.getPion("b6"));
+////        assertEquals(NOIR, m_echiquier.getPion("b6").getCouleur());
+////
+////        assertEquals(pion, m_echiquier.getPion("a1"));
+////
+////        try{
+////            m_echiquier.ajouterPion(pion2, "zz");
+////        }
+////        catch(PositionInvalideException e){
+////            assertEquals(ERR_POSITION_INVALIDE, e.getMessage());
+////            assertEquals(2, m_echiquier.getNombrePions());
+////        }
+////    }
 
     /**
      * Methode testant l'initialisation d'un echiquier. Vérifie
@@ -69,21 +69,22 @@ public class TestEchiquier extends TestCase {
         //On initialise l'echiquier avec des X
         m_echiquier.initialiser();
         //On seed l'echiquier avec des pions tests
-        m_echiquier.placerPions(BLANC, 6);
-        m_echiquier.placerPions(NOIR, 1);
+        m_echiquier.placerPieces();
+//        m_echiquier.placerPions(BLANC, 6);
+//        m_echiquier.placerPions(NOIR, 1);
 
-        String representationEhciquier =    "XXXXXXXX\n" +
+        String representationEhciquier =    "TCFDRFCT\n" +
                                             "PPPPPPPP\n" +
                                             "XXXXXXXX\n" +
                                             "XXXXXXXX\n" +
                                             "XXXXXXXX\n" +
                                             "XXXXXXXX\n" +
                                             "pppppppp\n" +
-                                            "XXXXXXXX\n";
+                                            "tcfdrfct\n";
         System.out.println(m_echiquier.toString());
 
         //On teste le nombres de pions present sur l'echiquier
-        assertEquals(16, m_echiquier.getNombrePions());
+        assertEquals(32, m_echiquier.getNombrePions());
         //On teste la representation graphique de l'echiquier
         assertEquals(representationEhciquier, m_echiquier.toString());
     }
