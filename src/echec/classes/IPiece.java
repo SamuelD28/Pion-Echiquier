@@ -1,11 +1,16 @@
-package echec.Class;
+package echec.classes;
 
+/**
+ * Interface pour les pièces d'un échiquier
+ *
+ * @author Samuel Dube
+ * @author Samuel Colassin
+ */
 public interface IPiece {
-
     /**
      * Enum représentant les type de pièce dans un échiquier.
      */
-     enum Type {
+    enum Type {
         PION('p', 1),
         CAVALIER('c', 2.5),
         FOU('f', 3),
@@ -13,16 +18,25 @@ public interface IPiece {
         REINE('d', 9),
         ROI('r', 0);
 
-        private Character m_representation;
-        private double m_force;
+        /**
+         * Représentation graphique de la pièce lors
+         * de l'affichage de l'échiquier
+         */
+        private final Character m_representation;
+        private final double m_force;
 
-        Type(Character p_representation, double p_force)
-        {
+        Type(Character p_representation, double p_force) {
             m_representation = p_representation;
             m_force = p_force;
         }
-        public double getForce(){return m_force;}
-        public Character getRepresentation(){return m_representation;}
+
+        double getForce() {
+            return m_force;
+        }
+
+        Character getRepresentation() {
+            return m_representation;
+        }
     }
 
     /**
@@ -34,9 +48,14 @@ public interface IPiece {
     }
 
     Couleur getCouleur();
+
     boolean estBlanc();
+
     boolean estNoir();
+
     double getForce();
+
     Character getRepresentation();
+
     Type getType();
 }

@@ -1,19 +1,19 @@
-package echec.Class;
+package echec.classes;
 
 import org.jetbrains.annotations.Nullable;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static echec.Class.IPiece.*;
-import static echec.Class.IPiece.Couleur.BLANC;
-import static echec.Class.IPiece.Couleur.NOIR;
+import static echec.classes.IPiece.Couleur;
+import static echec.classes.IPiece.Couleur.BLANC;
+import static echec.classes.IPiece.Couleur.NOIR;
+import static echec.classes.IPiece.Type;
 
 /**
  * Echiquier de base permettant l'ajout de pion
  *
  * @author Samuel Colassin
- * @author Samuel Dubé
+ * @author Samuel Dube
  */
 public class Echiquier {
     final static int TAILLE_ECHIQUIER = 8;
@@ -30,21 +30,34 @@ public class Echiquier {
     private void initialiser() {
         for (int y = 0; y < TAILLE_ECHIQUIER; y++) {
             for (int x = 0; x < TAILLE_ECHIQUIER; x++) {
-                if (y == 0) {
-                    m_echiquier.put(new Position(x, y), new Piece(NOIR, obtenirTypePositionDepart(x)));
-                } else if (y == 1) {
-                    m_echiquier.put(new Position(x, y), new Piece(NOIR, Type.PION));
-                } else if (y == 6) {
-                    m_echiquier.put(new Position(x, y), new Piece(BLANC, Type.PION));
-                } else if (y == 7) {
-                    m_echiquier.put(new Position(x, y), new Piece(BLANC, obtenirTypePositionDepart(x)));
-                } else {
-                    m_echiquier.put(new Position(x, y), null);
+                switch (y) {
+                    case 0:
+                        m_echiquier.put(new Position(x, y), Piece.obtenirPiece(NOIR, obtenirTypePositionDepart(x)));
+                        break;
+                    case 1:
+                        m_echiquier.put(new Position(x, y), Piece.obtenirPiece(NOIR, Type.PION));
+                        break;
+                    case 6:
+                        m_echiquier.put(new Position(x, y), Piece.obtenirPiece(BLANC, Type.PION));
+                        break;
+                    case 7:
+                        m_echiquier.put(new Position(x, y), Piece.obtenirPiece(BLANC, obtenirTypePositionDepart(x)));
+                        break;
+                    default:
+                        m_echiquier.put(new Position(x, y), null);
+                        break;
                 }
             }
         }
     }
 
+    /**
+     * Permet d'obtenir la pièce à mettre sur l'échiquier
+     * selon la position dans celui-ci.
+     *
+     * @param x L'axe des x dans l'échiquier
+     * @return Le type de pièce à mettre dans l'échiquier
+     */
     private static Type obtenirTypePositionDepart(int x) {
         switch (x) {
             case 0:
@@ -69,13 +82,14 @@ public class Echiquier {
     }
 
     /**
-     * Methode retournant le nombre de pions total de
-     * l'échiquier courant.
+     * Permet d'avoir le nombre d'occurence d'une pièce dans l'échiquier courant
      *
-     * @return Le nombre de pion total dans l'échiquier.
+     * @param p_couleur la couleur de la pièce désirée
+     * @param p_type le type de la pièce désirée
+     * @return le nombre d'occurence de la pièce dans le jeu
      */
     public int getNombrePieces(Couleur p_couleur, Type p_type) {
-        //On fait un cast en int puisque on sait que le nombre total ne depasseras jamais un int
+        //On fait un cast en int puisque on sait que le nombre total ne depassera jamais un int
         return (int) m_echiquier
                 .values()
                 .stream()
@@ -84,8 +98,13 @@ public class Echiquier {
                 .count();
     }
 
+    /**
+     * Permet d'avoir le nombre total de pièce dans l'échiquier courant
+     *
+     * @return Le nombre de pièce total de l'échiquer
+     */
     public int getNombrePieces() {
-        //On fait un cast en int puisque on sait que le nombre total ne depasseras jamais un int
+        //On fait un cast en int puisque on sait que le nombre total ne depassera jamais un int
         return (int) m_echiquier
                 .values()
                 .stream()
@@ -93,11 +112,17 @@ public class Echiquier {
                 .count();
     }
 
-    public double getForceEchiquier() {
+    /**
+     * Permet d'avoir la force total de toutes les pièces de l'échiquier
+     *
+     * @return la force du jeu courant
+     */
+    public double getForceEchiquier(Couleur p_couleur) {
         return m_echiquier
                 .values()
                 .stream()
                 .filter(p -> p instanceof IPiece)
+                .filter(p -> ((IPiece) p).getCouleur() == p_couleur)
                 .mapToDouble(p -> ((IPiece) p).getForce())
                 .sum();
     }
@@ -147,7 +172,21 @@ public class Echiquier {
                 representationEchiquier.append('X');
             }
         }
-
         return representationEchiquier.toString();
+    }
+
+    //TODO Méthode pour placer une pièce dans l'échiquier
+    // peut-être pas aussi simple que ca en réalité, mais effectue
+    // ce qui est demandé dans l'énoncé
+    /**
+     * Permet de placer une pièce à un endroit
+     * désiré dans l'échiquier
+     *
+     * @param p_type le type de la pièce
+     * @param p_couleur la couleur de la pièce
+     * @param p_position la position où on veut mettre la pièce
+     */
+    public void placerPiece(Type p_type, Couleur p_couleur, Position p_position) {
+        m_echiquier.put(p_position, Piece.obtenirPiece(p_couleur, p_type));
     }
 }

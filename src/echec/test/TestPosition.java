@@ -1,10 +1,10 @@
-package echec.Test;
+package echec.test;
 
-import echec.Class.Position;
-import echec.Class.Position.PositionInvalideException;
+import echec.classes.Position;
+import echec.classes.Position.PositionInvalideException;
 import junit.framework.TestCase;
 
-import static echec.Class.Position.PositionInvalideException.ERR_POSITION_INVALIDE;
+import static echec.classes.Position.PositionInvalideException.ERR_POSITION_INVALIDE;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**

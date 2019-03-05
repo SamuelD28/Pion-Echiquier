@@ -1,12 +1,22 @@
-package echec.Class;
+package echec.classes;
 
+/**
+ * Pièce de base que peut contenir un échiquier
+ *
+ * @author Samuel Dube
+ * @author Samuel Colassin
+ */
 public class Piece implements IPiece {
-    private Couleur m_couleur;
-    private Type m_type;
+    private final Couleur m_couleur;
+    private final Type m_type;
 
-    public Piece(Couleur p_couleur, Type p_type) {
+    private Piece(Couleur p_couleur, Type p_type) {
         m_couleur = p_couleur;
         m_type = p_type;
+    }
+
+    public static Piece obtenirPiece(Couleur p_couleur, Type p_type) {
+        return new Piece(p_couleur, p_type);
     }
 
     @Override
@@ -32,7 +42,7 @@ public class Piece implements IPiece {
     @Override
     public Character getRepresentation() {
         return (estBlanc()) ? m_type.getRepresentation() : Character.toUpperCase(m_type.getRepresentation());
-}
+    }
 
     @Override
     public Type getType() {
