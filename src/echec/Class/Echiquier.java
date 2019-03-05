@@ -1,8 +1,13 @@
 package echec.Class;
 
-import echec.Class.Pion.Couleur;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
+
+import static echec.Class.IPiece.*;
+import static echec.Class.IPiece.Couleur.BLANC;
+import static echec.Class.IPiece.Couleur.NOIR;
 
 /**
  * Echiquier de base permettant l'ajout de pion
@@ -12,34 +17,54 @@ import java.util.LinkedHashMap;
  */
 public class Echiquier {
     final static int TAILLE_ECHIQUIER = 8;
-    private final LinkedHashMap<Position, Object> m_pions = new LinkedHashMap<>();
-    private final char[][] m_echiquier = new char[TAILLE_ECHIQUIER][TAILLE_ECHIQUIER];
+    private final LinkedHashMap<Position, Object> m_echiquier = new LinkedHashMap<>();
+
+    public Echiquier() {
+        initialiser();
+    }
 
     /**
-     * Methode qui initialise l'echiquier avec des pieces vides
+     * Methode qui initialise l'echiquier avec des m_echiquier vides
      * representer ave des X.
      */
-    public void initialiser() {
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
-                m_echiquier[y][x] = 'X';
+    private void initialiser() {
+        for (int y = 0; y < TAILLE_ECHIQUIER; y++) {
+            for (int x = 0; x < TAILLE_ECHIQUIER; x++) {
+                if (y == 0) {
+                    m_echiquier.put(new Position(x, y), new Piece(NOIR, obtenirTypePositionDepart(x)));
+                } else if (y == 1) {
+                    m_echiquier.put(new Position(x, y), new Piece(NOIR, Type.PION));
+                } else if (y == 6) {
+                    m_echiquier.put(new Position(x, y), new Piece(BLANC, Type.PION));
+                } else if (y == 7) {
+                    m_echiquier.put(new Position(x, y), new Piece(BLANC, obtenirTypePositionDepart(x)));
+                } else {
+                    m_echiquier.put(new Position(x, y), null);
+                }
             }
         }
     }
 
-    /**
-     * Methode TEMPORAIRE permettant de remplir une
-     * rangee de l'echiquier avec des pions.
-     *
-     * @param p_couleur Couleur des pions a ajouter
-     * @param p_range   Position de la rangee ou ajouter les pions
-     */
-    public void placerPions(Couleur p_couleur, int p_range) {
-        for (int positionX = 0; positionX < TAILLE_ECHIQUIER; positionX++) {
-            Position positionPion = new Position(positionX, p_range);
-            Pion pion = new Pion(p_couleur);
-            m_pions.put(positionPion, pion);
-            m_echiquier[positionPion.getY()][positionPion.getX()] = pion.getRepresentation();
+    private static Type obtenirTypePositionDepart(int x) {
+        switch (x) {
+            case 0:
+                return Type.TOUR;
+            case 1:
+                return Type.CAVALIER;
+            case 2:
+                return Type.FOU;
+            case 3:
+                return Type.REINE;
+            case 4:
+                return Type.ROI;
+            case 5:
+                return Type.FOU;
+            case 6:
+                return Type.CAVALIER;
+            case 7:
+                return Type.TOUR;
+            default:
+                throw new IllegalArgumentException();
         }
     }
 
@@ -49,8 +74,32 @@ public class Echiquier {
      *
      * @return Le nombre de pion total dans l'échiquier.
      */
-    public int getNombrePions() {
-        return m_pions.size();
+    public int getNombrePieces(Couleur p_couleur, Type p_type) {
+        //On fait un cast en int puisque on sait que le nombre total ne depasseras jamais un int
+        return (int) m_echiquier
+                .values()
+                .stream()
+                .filter(o -> o instanceof IPiece)
+                .filter(p -> ((Piece) p).getCouleur() == p_couleur && ((Piece) p).getType() == p_type)
+                .count();
+    }
+
+    public int getNombrePieces() {
+        //On fait un cast en int puisque on sait que le nombre total ne depasseras jamais un int
+        return (int) m_echiquier
+                .values()
+                .stream()
+                .filter(o -> o instanceof IPiece)
+                .count();
+    }
+
+    public double getForceEchiquier() {
+        return m_echiquier
+                .values()
+                .stream()
+                .filter(p -> p instanceof IPiece)
+                .mapToDouble(p -> ((IPiece) p).getForce())
+                .sum();
     }
 
     /**
@@ -60,27 +109,13 @@ public class Echiquier {
      * @param p_position La position du pion désiré
      * @return Le pion à la position donnée
      */
-    public Pion getPion(String p_position) {
-        Position position = new Position(p_position);
-        return m_pions.get(position);
-    }
-
-    /**
-     * Permet d'ajouter un pion dans l'échiquier
-     *
-     * @param p_pion     Le pion à ajouter
-     * @param p_position La position du pion qu'on ajoute
-     */
-    public boolean ajouterPion(Pion p_pion, String p_position) {
-        try{
-            Position position = new Position(p_position);
-            m_pions.put(position, p_pion);
-            return true;
-        }
-        catch(IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            return false;
-        }
+    @Nullable
+    public IPiece getPiece(Position p_position) {
+        Object obj = m_echiquier.get(p_position);
+        if (obj instanceof IPiece)
+            return (IPiece) obj;
+        else
+            return null;
     }
 
     /**
@@ -92,14 +127,25 @@ public class Echiquier {
      */
     @Override
     public String toString() {
-
         StringBuilder representationEchiquier = new StringBuilder();
+        int pointdepart = 0;
 
-        for (int x = 0; x < m_echiquier[0].length; x++) {
-            for (int y = 0; y < m_echiquier[1].length; y++) {
-                representationEchiquier.append(m_echiquier[x][y]);
+        for (Map.Entry<Position, Object> entree : m_echiquier.entrySet()) {
+
+            Object valeur = entree.getValue();
+            Position cle = entree.getKey();
+
+            //Ajoute un saut de ligne quand on change de rangee
+            if (cle.getY() != pointdepart) {
+                pointdepart++;
+                representationEchiquier.append('\n');
             }
-            representationEchiquier.append("\n");
+
+            if (valeur instanceof IPiece) {
+                representationEchiquier.append(((IPiece) valeur).getRepresentation());
+            } else {
+                representationEchiquier.append('X');
+            }
         }
 
         return representationEchiquier.toString();

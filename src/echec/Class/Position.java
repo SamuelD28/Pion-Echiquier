@@ -14,7 +14,6 @@ import static echec.Class.Echiquier.TAILLE_ECHIQUIER;
  * @author Samuel Colassin
  */
 public class Position {
-
     /** Constante utiliser pour mapper une lettre a une position dans un echiquier */
     private final static List<Character> ECHELLE_POSITIONX = Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H');
 

@@ -1,13 +1,9 @@
 package echec.Test;
 
 import echec.Class.Echiquier;
-import echec.Class.Pion;
-import echec.Class.Position.PositionInvalideException;
+import echec.Class.IPiece;
+import echec.Class.Piece;
 import junit.framework.TestCase;
-
-import static echec.Class.Pion.Couleur.BLANC;
-import static echec.Class.Pion.Couleur.NOIR;
-import static echec.Class.Position.PositionInvalideException.*;
 
 /**
  * Tests de la classe Echiquier
@@ -16,6 +12,15 @@ import static echec.Class.Position.PositionInvalideException.*;
  * @author Samuel Colassin
  */
 public class TestEchiquier extends TestCase {
+    private final static String REPRESENTATION_DEPART =
+            "TCFDRFCT\n" +
+            "PPPPPPPP\n" +
+            "XXXXXXXX\n" +
+            "XXXXXXXX\n" +
+            "XXXXXXXX\n" +
+            "XXXXXXXX\n" +
+            "pppppppp\n" +
+            "tcfdrfct";
     private Echiquier m_echiquier;
 
     /**
@@ -29,15 +34,15 @@ public class TestEchiquier extends TestCase {
      * Test la création d'un échiquier
      */
     public void testCreer() {
-        assertEquals(0, m_echiquier.getNombrePions());
+        assertEquals(REPRESENTATION_DEPART, m_echiquier.toString());
+        assertEquals(32, m_echiquier.getNombrePieces());
     }
 
     /**
      * Test l'ajout d'un pion dans un échiquier
      */
     public void testAjouterPion() {
-        Pion pion = new Pion();
-        
+        Piece pion = new Piece(IPiece.Couleur.BLANC, IPiece.Type.PION);
         assertTrue(m_echiquier.ajouterPion(pion, "a1"));
         assertEquals(1, m_echiquier.getNombrePions());
         assertEquals(pion, m_echiquier.getPion("a1"));
@@ -51,10 +56,10 @@ public class TestEchiquier extends TestCase {
 
         assertEquals(pion, m_echiquier.getPion("a1"));
 
-        try{
+
+        try {
             m_echiquier.ajouterPion(pion2, "zz");
-        }
-        catch(PositionInvalideException e){
+        } catch (PositionInvalideException e) {
             assertEquals(ERR_POSITION_INVALIDE, e.getMessage());
             assertEquals(2, m_echiquier.getNombrePions());
         }
@@ -65,27 +70,23 @@ public class TestEchiquier extends TestCase {
      * que les pièces sont bel et bien au bon endroit et que le
      * nombre de pièces correspond également.
      */
-    public void testInitialiser() {
+    public void testRepresentation() {
 
-        //On initialise l'echiquier avec des X
-        m_echiquier.initialiser();
-        //On seed l'echiquier avec des pions tests
-        m_echiquier.placerPions(BLANC, 6);
-        m_echiquier.placerPions(NOIR, 1);
-
-        String representationEhciquier =    "XXXXXXXX\n" +
-                                            "PPPPPPPP\n" +
-                                            "XXXXXXXX\n" +
-                                            "XXXXXXXX\n" +
-                                            "XXXXXXXX\n" +
-                                            "XXXXXXXX\n" +
-                                            "pppppppp\n" +
-                                            "XXXXXXXX\n";
         System.out.println(m_echiquier.toString());
 
         //On teste le nombres de pions present sur l'echiquier
-        assertEquals(16, m_echiquier.getNombrePions());
+        assertEquals(32, m_echiquier.getNombrePions());
         //On teste la representation graphique de l'echiquier
         assertEquals(representationEhciquier, m_echiquier.toString());
     }
+
+    public void testForceEchiquier() {
+
+    }
+
+    public void testPositionEchiquier() {
+
+    }
+
+
 }
