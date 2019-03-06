@@ -195,6 +195,7 @@ public class Position {
      * @param obj Position a comparer la courante instance
      * @return Vrai si les deux Position sont equivalentes sinon faux.
      */
+    @Override
     public boolean equals(Object obj) {
         if (this == obj)
             return true;

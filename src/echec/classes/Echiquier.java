@@ -137,7 +137,7 @@ public class Echiquier {
     @Nullable
     public IPiece getPiece(Position p_position) {
         Object obj = m_echiquier.get(p_position);
-        return obj instanceof  IPiece ? ((IPiece) obj) : null;
+        return obj instanceof IPiece ? ((IPiece) obj) : null;
     }
 
     /**
@@ -176,12 +176,12 @@ public class Echiquier {
      * Permet de placer une pièce à un endroit
      * désiré dans l'échiquier.
      *
-     * @param p_piece Piece a deplacer sur l'echiquier
+     * @param p_piece            Piece a deplacer sur l'echiquier
      * @param p_nouvellePosition la position où on veut mettre la pièce
      */
     public boolean placerPiece(IPiece p_piece, Position p_nouvellePosition) {
         //Pour linstant on retourne false si une piece est deja a la position souhaite
-        if(m_echiquier.get(p_nouvellePosition) != null)
+        if (m_echiquier.get(p_nouvellePosition) != null)
             return false;
         //NOTE : On doit faire un distinction entre deux piece de meme type/couleur.
         var result = m_echiquier.entrySet()
@@ -193,7 +193,7 @@ public class Echiquier {
 
             Position anciennePosition = result.get().getKey();
             IPiece piece = (IPiece) result.get().getValue();
-            
+
             m_echiquier.replace(anciennePosition, null);
             m_echiquier.replace(p_nouvellePosition, piece);
             return true;

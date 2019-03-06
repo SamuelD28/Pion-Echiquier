@@ -6,7 +6,6 @@ import echec.classes.Piece;
 import echec.classes.Position;
 import junit.framework.TestCase;
 
-import static echec.classes.IPiece.*;
 import static echec.classes.IPiece.Couleur.*;
 import static echec.classes.IPiece.Type.*;
 
@@ -42,7 +41,11 @@ public class TestEchiquier extends TestCase {
      */
     public void testCreer() {
         System.out.println(m_echiquier.toString());
+
         assertEquals(REPRESENTATION_DEPART, m_echiquier.toString());
+        assertEquals(32, m_echiquier.getNombrePieces());
+
+        m_echiquier = new Echiquier();
         assertEquals(32, m_echiquier.getNombrePieces());
     }
 
@@ -100,8 +103,6 @@ public class TestEchiquier extends TestCase {
         IPiece cavalierNoir = new Piece(NOIR, CAVALIER);
 
         assertTrue(m_echiquier.placerPiece(cavalierNoir, new Position("c5")));
-        // NOTE : L'axe des y (chiffre) est présentement l'inverse d'un échiquier traditionnel
-        // NOTE : --> Rangée du haut = 1 et rangée du bas = 8
         String echiquierAjout = "TXFDRFCT\n" +
                 "PPPPPPPP\n" +
                 "XXXXXXXX\n" +
@@ -110,6 +111,7 @@ public class TestEchiquier extends TestCase {
                 "XXXXXXXX\n" +
                 "pppppppp\n" +
                 "tcfdrfct";
+
         System.out.println();
         System.out.println(m_echiquier.toString());
 
@@ -124,6 +126,8 @@ public class TestEchiquier extends TestCase {
                 "XXXXXXXX\n" +
                 "pppppppp\n" +
                 "tcfdrfct";
+        System.out.println();
+        System.out.println(m_echiquier.toString());
         assertEquals(echiquierAjout, m_echiquier.toString());
 
         m_echiquier = new Echiquier();
