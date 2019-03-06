@@ -1,4 +1,4 @@
-package echec.test;
+package echec.Test;
 
 import echec.classes.IPiece;
 import echec.classes.Piece;
@@ -14,7 +14,7 @@ public class TestPiece extends TestCase {
     private Piece m_piece;
 
     public void setUp() {
-        m_piece = Piece.obtenirPiece(IPiece.Couleur.NOIR, IPiece.Type.ROI);
+        m_piece = new Piece(IPiece.Couleur.NOIR, IPiece.Type.ROI);
     }
 
     /**
@@ -32,7 +32,7 @@ public class TestPiece extends TestCase {
      */
     public void testGetForce() {
         assertEquals(0.0, m_piece.getForce());
-        Piece piece = Piece.obtenirPiece(IPiece.Couleur.BLANC, IPiece.Type.FOU);
+        Piece piece = new Piece(IPiece.Couleur.BLANC, IPiece.Type.FOU);
         assertEquals(3.0, piece.getForce());
     }
 
@@ -41,7 +41,7 @@ public class TestPiece extends TestCase {
      */
     public void testCouleur() {
         assertEquals(IPiece.Couleur.NOIR, m_piece.getCouleur());
-        Piece piece = Piece.obtenirPiece(IPiece.Couleur.BLANC, IPiece.Type.REINE);
+        Piece piece = new Piece(IPiece.Couleur.BLANC, IPiece.Type.REINE);
         assertEquals(IPiece.Couleur.BLANC, piece.getCouleur());
         assertTrue(m_piece.estNoir());
         assertFalse(piece.estNoir());

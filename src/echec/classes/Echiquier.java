@@ -1,6 +1,7 @@
 package echec.classes;
 
 import org.jetbrains.annotations.Nullable;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -32,16 +33,16 @@ public class Echiquier {
             for (int x = 0; x < TAILLE_ECHIQUIER; x++) {
                 switch (y) {
                     case 0:
-                        m_echiquier.put(new Position(x, y), Piece.obtenirPiece(NOIR, obtenirTypePositionDepart(x)));
+                        m_echiquier.put(new Position(x, y), new Piece(NOIR, obtenirTypePositionDepart(x)));
                         break;
                     case 1:
-                        m_echiquier.put(new Position(x, y), Piece.obtenirPiece(NOIR, Type.PION));
+                        m_echiquier.put(new Position(x, y), new Piece(NOIR, Type.PION));
                         break;
                     case 6:
-                        m_echiquier.put(new Position(x, y), Piece.obtenirPiece(BLANC, Type.PION));
+                        m_echiquier.put(new Position(x, y), new Piece(BLANC, Type.PION));
                         break;
                     case 7:
-                        m_echiquier.put(new Position(x, y), Piece.obtenirPiece(BLANC, obtenirTypePositionDepart(x)));
+                        m_echiquier.put(new Position(x, y), new Piece(BLANC, obtenirTypePositionDepart(x)));
                         break;
                     default:
                         m_echiquier.put(new Position(x, y), null);
@@ -85,7 +86,7 @@ public class Echiquier {
      * Permet d'avoir le nombre d'occurence d'une pièce dans l'échiquier courant
      *
      * @param p_couleur la couleur de la pièce désirée
-     * @param p_type le type de la pièce désirée
+     * @param p_type    le type de la pièce désirée
      * @return le nombre d'occurence de la pièce dans le jeu
      */
     public int getNombrePieces(Couleur p_couleur, Type p_type) {
@@ -121,8 +122,7 @@ public class Echiquier {
         return m_echiquier
                 .values()
                 .stream()
-                .filter(p -> p instanceof IPiece)
-                .filter(p -> ((IPiece) p).getCouleur() == p_couleur)
+                .filter(p -> p instanceof IPiece && ((IPiece) p).getCouleur() == p_couleur)
                 .mapToDouble(p -> ((IPiece) p).getForce())
                 .sum();
     }
@@ -137,13 +137,8 @@ public class Echiquier {
     @Nullable
     public IPiece getPiece(Position p_position) {
         Object obj = m_echiquier.get(p_position);
-        if (obj instanceof IPiece)
-            return (IPiece) obj;
-        else
-            return null;
+        return obj instanceof  IPiece ? ((IPiece) obj) : null;
     }
-
-    public boolean deplacerPiece(IPiece piece, Position p_position){}
 
     /**
      * Methode permettant d'obtenir la représentation graphique
@@ -157,10 +152,10 @@ public class Echiquier {
         StringBuilder representationEchiquier = new StringBuilder();
         int rangeeDepart = 0;
 
-        for (Map.Entry<Position, Object> entree : m_echiquier.entrySet()) {
+        for (Map.Entry<Position, Object> result : m_echiquier.entrySet()) {
 
-            Object valeur = entree.getValue();
-            Position cle = entree.getKey();
+            Object valeur = result.getValue();
+            Position cle = result.getKey();
 
             //Ajoute un saut de ligne quand on change de rangee
             if (cle.getY() != rangeeDepart) {
@@ -177,18 +172,33 @@ public class Echiquier {
         return representationEchiquier.toString();
     }
 
-    //TODO Méthode pour placer une pièce dans l'échiquier
-    // peut-être pas aussi simple que ca en réalité, mais effectue
-    // ce qui est demandé dans l'énoncé
     /**
      * Permet de placer une pièce à un endroit
-     * désiré dans l'échiquier
+     * désiré dans l'échiquier.
      *
-     * @param p_type le type de la pièce
-     * @param p_couleur la couleur de la pièce
-     * @param p_position la position où on veut mettre la pièce
+     * @param p_piece Piece a deplacer sur l'echiquier
+     * @param p_nouvellePosition la position où on veut mettre la pièce
      */
-    public void placerPiece(Type p_type, Couleur p_couleur, Position p_position) {
-        m_echiquier.put(p_position, Piece.obtenirPiece(p_couleur, p_type));
+    public boolean placerPiece(IPiece p_piece, Position p_nouvellePosition) {
+        //Pour linstant on retourne false si une piece est deja a la position souhaite
+        if(m_echiquier.get(p_nouvellePosition) != null)
+            return false;
+        //NOTE : On doit faire un distinction entre deux piece de meme type/couleur.
+        var result = m_echiquier.entrySet()
+                .stream()
+                .filter(p -> p.getValue() instanceof IPiece && p.getValue().equals(p_piece))
+                .findFirst();
+
+        if (result.isPresent()) {
+
+            Position anciennePosition = result.get().getKey();
+            IPiece piece = (IPiece) result.get().getValue();
+            
+            m_echiquier.replace(anciennePosition, null);
+            m_echiquier.replace(p_nouvellePosition, piece);
+            return true;
+        }
+
+        return false;
     }
 }

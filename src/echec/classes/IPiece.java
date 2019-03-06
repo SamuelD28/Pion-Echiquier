@@ -55,7 +55,7 @@ public interface IPiece {
 
     double getForce();
 
-    Character getRepresentation();
+    char getRepresentation();
 
     Type getType();
 }

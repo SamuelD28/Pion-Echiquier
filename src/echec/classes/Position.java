@@ -14,7 +14,9 @@ import static echec.classes.Echiquier.TAILLE_ECHIQUIER;
  * @author Samuel Colassin
  */
 public class Position {
-    /** Constante utiliser pour mapper une lettre a une position dans un echiquier */
+    /**
+     * Constante utiliser pour mapper une lettre a une position dans un echiquier
+     */
     private final static List<Character> ECHELLE_POSITIONX = Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H');
 
     private int m_X;
@@ -88,6 +90,7 @@ public class Position {
      * @return La position converti sous formes de array. [0] = x, [1] = y
      */
     private static int[] parseTextuelleVersPositionXY(String p_positionTextuelle) {
+
         if (p_positionTextuelle.length() == 2) {
 
             int positionX = ECHELLE_POSITIONX.indexOf(Character.toUpperCase(p_positionTextuelle.charAt(0)));
@@ -192,9 +195,7 @@ public class Position {
      * @param obj Position a comparer la courante instance
      * @return Vrai si les deux Position sont equivalentes sinon faux.
      */
-    @Override
     public boolean equals(Object obj) {
-
         if (this == obj)
             return true;
 

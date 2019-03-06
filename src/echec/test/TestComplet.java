@@ -1,4 +1,4 @@
-package echec.test;
+package echec.Test;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;

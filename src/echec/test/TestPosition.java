@@ -1,4 +1,4 @@
-package echec.test;
+package echec.Test;
 
 import echec.classes.Position;
 import echec.classes.Position.PositionInvalideException;
@@ -45,7 +45,6 @@ public class TestPosition extends TestCase {
      * a une nouvelle position
      */
     public void testAssignation() {
-
         Position position1 = new Position("A1");
 
         //Devrait change la position a 1,1
@@ -76,7 +75,6 @@ public class TestPosition extends TestCase {
      * et bien equivalente a une la meme position x,y
      */
     public void testComparaison() {
-
         Position position1 = new Position("A1");  //x,y = 0,0
         Position position2 = new Position(0, 0);     //x,y = 0,0
         Position position3 = new Position("C4"); //x,y = 2,3

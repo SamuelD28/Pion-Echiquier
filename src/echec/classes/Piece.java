@@ -10,13 +10,9 @@ public class Piece implements IPiece {
     private final Couleur m_couleur;
     private final Type m_type;
 
-    private Piece(Couleur p_couleur, Type p_type) {
+    public Piece(Couleur p_couleur, Type p_type) {
         m_couleur = p_couleur;
         m_type = p_type;
-    }
-
-    public static Piece obtenirPiece(Couleur p_couleur, Type p_type) {
-        return new Piece(p_couleur, p_type);
     }
 
     @Override
@@ -40,7 +36,7 @@ public class Piece implements IPiece {
     }
 
     @Override
-    public Character getRepresentation() {
+    public char getRepresentation() {
         return (estBlanc()) ? m_type.getRepresentation() : Character.toUpperCase(m_type.getRepresentation());
     }
 
