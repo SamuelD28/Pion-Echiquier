@@ -1,10 +1,10 @@
-package echec.Class;
+package echec.classes;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static echec.Class.Echiquier.TAILLE_ECHIQUIER;
+import static echec.classes.Echiquier.TAILLE_ECHIQUIER;
 
 /**
  * Classe permettant de gérer la position d'une pièce

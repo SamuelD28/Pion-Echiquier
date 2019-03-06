@@ -1,4 +1,4 @@
-package echec.Test;
+package echec.test;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -18,7 +18,7 @@ public class TestComplet extends TestCase {
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
         //Teste la classe Pion
-        suite.addTestSuite(TestPion.class);
+        suite.addTestSuite(TestPiece.class);
         //Teste la classe echiquier
         suite.addTestSuite(TestEchiquier.class);
         //Teste la classe Position
