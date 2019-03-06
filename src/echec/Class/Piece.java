@@ -38,4 +38,25 @@ public class Piece implements IPiece {
     public Type getType() {
         return m_type;
     }
+
+    @Override
+    public int hashCode() {
+        return (int)m_type.getForce() * 31 + m_couleur.ordinal() * 31;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+
+        if(obj == null)
+            return false;
+
+        if(obj instanceof IPiece)
+        {
+            IPiece piece = (IPiece)obj;
+            return piece.getCouleur() == getCouleur() && piece.getType() == getType();
+        }
+        else{
+            return false;
+        }
+    }
 }

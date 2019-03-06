@@ -21,7 +21,6 @@ public class TestPosition extends TestCase {
      * position.
      */
     public void testCreer() {
-
         Position position1 = new Position("A1");
         Position position2 = new Position(7, 3);
 

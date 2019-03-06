@@ -118,6 +118,8 @@ public class Echiquier {
             return null;
     }
 
+    public boolean deplacerPiece(IPiece piece, Position p_position){}
+
     /**
      * Methode permettant d'obtenir la représentation graphique
      * sous forme de string de l'échiquier.
@@ -128,7 +130,7 @@ public class Echiquier {
     @Override
     public String toString() {
         StringBuilder representationEchiquier = new StringBuilder();
-        int pointdepart = 0;
+        int rangeeDepart = 0;
 
         for (Map.Entry<Position, Object> entree : m_echiquier.entrySet()) {
 
@@ -136,8 +138,8 @@ public class Echiquier {
             Position cle = entree.getKey();
 
             //Ajoute un saut de ligne quand on change de rangee
-            if (cle.getY() != pointdepart) {
-                pointdepart++;
+            if (cle.getY() != rangeeDepart) {
+                rangeeDepart++;
                 representationEchiquier.append('\n');
             }
 
