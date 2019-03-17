@@ -8,41 +8,56 @@ import java.util.Objects;
  * @author Samuel Dube
  * @author Samuel Colassin
  */
-public class Piece implements IPiece {
+public abstract class Piece {
     private final Couleur m_couleur;
-    private final Type m_type;
+    private final char m_representation;
+
+    //TODO TYPE serait Pertinant a préserver dans la classe??
+    /**
+     * Enum représentant les couleurs qu'un pion peut avoir.
+     */
+    public enum Couleur {
+        BLANC,
+        NOIR
+    }
 
     /**
      * Constructeur de base prennant en parametre
      * la couleur et le type de piece.
      *
      * @param p_couleur Couleur de la piece
-     * @param p_type    Type de la piece
      */
-    public Piece(Couleur p_couleur, Type p_type) {
+    protected Piece(Couleur p_couleur, char p_representation) {
         m_couleur = p_couleur;
-        m_type = p_type;
+        m_representation = p_representation;
     }
 
     /**
      * Methode permettant d'obtenir le caractere representant
-     * la pice.
+     * la pièce selon son type.
      *
      * @return Le caractere associe a la piece
      */
-    @Override
     public char getRepresentation() {
-        return (estBlanc()) ? m_type.getRepresentation() : Character.toUpperCase(m_type.getRepresentation());
+        return m_couleur == Couleur.BLANC ? m_representation : Character.toUpperCase(m_representation);
     }
 
     /**
-     * Methode permettant d'obtenir la force de la piece.
+     * Methode permettant de definir la force d'une
+     * pièce selon son type.
      *
-     * @return La force de la piece
+     * @return Sa force sous forme de double.
      */
-    @Override
     public double getForce() {
-        return m_type.getForce();
+        switch (m_representation) {
+            case 'r' : return 0;
+            case 'd' : return 9;
+            case 't' : return 5;
+            case 'f' : return 3;
+            case 'c' : return 2.5;
+            case 'p' : return 1;
+            default: return -1;
+        }
     }
 
     /**
@@ -50,7 +65,6 @@ public class Piece implements IPiece {
      *
      * @return Vrai si la piece est noire
      */
-    @Override
     public boolean estNoir() {
         return !estBlanc();
     }
@@ -60,30 +74,18 @@ public class Piece implements IPiece {
      *
      * @return Vrai si la piece est blanche
      */
-    @Override
     public boolean estBlanc() {
         return m_couleur == Couleur.BLANC;
     }
 
     /**
-     * Methode permettant d"obtenir la couleur
+     * Methode permettant d'obtenir la couleur
      * de la piece.
      *
      * @return Couleur de la piece
      */
-    @Override
     public Couleur getCouleur() {
         return m_couleur;
-    }
-
-    /**
-     * Methode permettant d'obtenir le type de la piece.
-     *
-     * @return Type de la piece
-     */
-    @Override
-    public Type getType() {
-        return m_type;
     }
 
     /**
@@ -94,7 +96,8 @@ public class Piece implements IPiece {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(m_type, m_couleur);
+        // TODO Hash correctement?
+        return Objects.hash(m_couleur, m_representation);
     }
 
     /**
@@ -110,9 +113,10 @@ public class Piece implements IPiece {
         if (obj == null)
             return false;
 
-        if (obj instanceof IPiece) {
-            IPiece piece = (IPiece) obj;
-            return piece.getCouleur() == getCouleur() && piece.getType() == getType();
+        if (obj instanceof Piece) {
+            Piece piece = (Piece) obj;
+            // TODO ok?
+            return piece.getCouleur() == getCouleur() && piece.getRepresentation() == getRepresentation();
         } else {
             return false;
         }

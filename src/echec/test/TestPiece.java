@@ -1,11 +1,9 @@
-package echec.Test;
+package echec.test;
 
-import echec.classes.IPiece;
-import echec.classes.Piece;
+import echec.classes.*;
+import echec.classes.Piece.Couleur;
 import junit.framework.TestCase;
-
-import static echec.classes.IPiece.Couleur.*;
-import static echec.classes.IPiece.Type.*;
+import static echec.classes.Piece.Couleur.*;
 
 /**
  * Tests de la classe Pion
@@ -13,20 +11,17 @@ import static echec.classes.IPiece.Type.*;
  * @author Samuel Colassin
  * @author Samuel Dubé
  */
-public class TestPiece extends TestCase {
+public abstract class TestPiece extends TestCase {
     private Piece m_piece;
 
     public void setUp() {
-        m_piece = new Piece(NOIR, ROI);
+        m_piece = Roi.creer(NOIR);
     }
 
     /**
      * Method testant la creation des pieces
      */
-    public void testCreer() {
-        assertEquals(ROI, m_piece.getType());
-        assertEquals("R", m_piece.getRepresentation() + "");
-    }
+    abstract protected Piece creerPiece(Couleur p_couleur);
 
     /**
      * Test permettant de vérifier si on indique la
@@ -34,8 +29,8 @@ public class TestPiece extends TestCase {
      */
     public void testGetForce() {
         assertEquals(0.0, m_piece.getForce());
-        Piece piece = new Piece(BLANC, FOU);
-        assertEquals(3.0, piece.getForce());
+        Piece piece = Reine.creer(BLANC);
+        assertEquals(9.0, piece.getForce());
     }
 
     /**
@@ -44,12 +39,12 @@ public class TestPiece extends TestCase {
      */
     public void testType()
     {
-        IPiece pion = new Piece(BLANC, PION);
-        IPiece cavalier = new Piece(BLANC, CAVALIER);
-        IPiece roi = new Piece(BLANC, ROI);
-        IPiece reine = new Piece(BLANC, REINE);
-        IPiece fou = new Piece(BLANC, FOU);
-        IPiece tour = new Piece(BLANC, TOUR);
+        Piece pion = Pion.creer(BLANC);
+        Piece cavalier = Cavalier.creer(BLANC);
+        Piece roi = Roi.creer(NOIR);
+        Piece reine = Reine.creer(BLANC);
+        Piece fou = Fou.creer(BLANC);
+        Piece tour = Tour.creer(BLANC);
 
         assertEquals(1.0, pion.getForce());
         assertEquals(2.5, cavalier.getForce());
@@ -63,7 +58,7 @@ public class TestPiece extends TestCase {
         assertEquals('f', fou.getRepresentation());
         assertEquals('t', tour.getRepresentation());
         assertEquals('d', reine.getRepresentation());
-        assertEquals('r', roi.getRepresentation());
+        assertEquals('R', roi.getRepresentation());
     }
 
     /**
@@ -71,7 +66,7 @@ public class TestPiece extends TestCase {
      */
     public void testCouleur() {
         assertEquals(NOIR, m_piece.getCouleur());
-        Piece piece = new Piece(BLANC, REINE);
+        Piece piece = Reine.creer(BLANC);
         assertEquals(BLANC, piece.getCouleur());
         assertTrue(m_piece.estNoir());
         assertFalse(piece.estNoir());

@@ -5,10 +5,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static echec.classes.IPiece.Couleur;
-import static echec.classes.IPiece.Couleur.BLANC;
-import static echec.classes.IPiece.Couleur.NOIR;
-import static echec.classes.IPiece.Type;
+import static echec.classes.Piece.Couleur;
+import static echec.classes.Piece.Couleur.BLANC;
+import static echec.classes.Piece.Couleur.NOIR;
 
 /**
  * Echiquier de base permettant l'ajout de pion
@@ -33,16 +32,16 @@ public class Echiquier {
             for (int x = 0; x < TAILLE_ECHIQUIER; x++) {
                 switch (y) {
                     case 0:
-                        m_echiquier.put(new Position(x, y), new Piece(NOIR, obtenirTypePositionDepart(x)));
+                        m_echiquier.put(new Position(x, y), obtenirPiecePositionDepart(x, NOIR));
                         break;
                     case 1:
-                        m_echiquier.put(new Position(x, y), new Piece(NOIR, Type.PION));
+                        m_echiquier.put(new Position(x, y), obtenirPiecePositionDepart(x, NOIR));
                         break;
                     case 6:
-                        m_echiquier.put(new Position(x, y), new Piece(BLANC, Type.PION));
+                        m_echiquier.put(new Position(x, y), obtenirPiecePositionDepart(x, BLANC));
                         break;
                     case 7:
-                        m_echiquier.put(new Position(x, y), new Piece(BLANC, obtenirTypePositionDepart(x)));
+                        m_echiquier.put(new Position(x, y), obtenirPiecePositionDepart(x, BLANC));
                         break;
                     default:
                         m_echiquier.put(new Position(x, y), null);
@@ -52,6 +51,7 @@ public class Echiquier {
         }
     }
 
+    //TODO Changer ou garder un type?
     /**
      * Permet d'obtenir la pièce à mettre sur l'échiquier
      * selon la position dans celui-ci.
@@ -59,24 +59,21 @@ public class Echiquier {
      * @param x L'axe des x dans l'échiquier
      * @return Le type de pièce à mettre dans l'échiquier
      */
-    private static Type obtenirTypePositionDepart(int x) {
+    private static Piece obtenirPiecePositionDepart(int x, Couleur p_couleur) {
         switch (x) {
             case 0:
-                return Type.TOUR;
-            case 1:
-                return Type.CAVALIER;
-            case 2:
-                return Type.FOU;
-            case 3:
-                return Type.REINE;
-            case 4:
-                return Type.ROI;
-            case 5:
-                return Type.FOU;
-            case 6:
-                return Type.CAVALIER;
             case 7:
-                return Type.TOUR;
+                return Tour.creer(p_couleur);
+            case 1:
+            case 6:
+                return Cavalier.creer(p_couleur);
+            case 2:
+            case 5:
+                return Fou.creer(p_couleur);
+            case 3:
+                return Reine.creer(p_couleur);
+            case 4:
+                return Roi.creer(p_couleur);
             default:
                 throw new IllegalArgumentException();
         }
@@ -89,6 +86,7 @@ public class Echiquier {
      * @param p_type    le type de la pièce désirée
      * @return le nombre d'occurence de la pièce dans le jeu
      */
+    //TODO Changer ou garder un type?
     public int getNombrePieces(Couleur p_couleur, Type p_type) {
         //On fait un cast en int puisque on sait que le nombre total ne depassera jamais un int
         return (int) m_echiquier
