@@ -1,13 +1,10 @@
 package echec.test;
 
-import echec.classes.Echiquier;
-import echec.classes.IPiece;
-import echec.classes.Piece;
-import echec.classes.Position;
+import echec.classes.*;
 import junit.framework.TestCase;
 
-import static echec.classes.IPiece.Couleur.*;
-import static echec.classes.IPiece.Type.*;
+import static echec.classes.Piece.Couleur.*;
+import static echec.classes.Piece.Type.*;
 
 /**
  * Tests de la classe Echiquier
@@ -64,14 +61,14 @@ public class TestEchiquier extends TestCase {
      * dans l'échiquier.
      */
     public void testGetPiece() {
-        IPiece pionNoir = new Piece(NOIR, PION);
-        IPiece roiNoir = new Piece(NOIR, ROI);
+        Piece pionNoir = Pion.creer(NOIR);
+        Piece roiNoir = Roi.creer(NOIR);
 
         assertEquals(pionNoir, m_echiquier.getPiece(new Position("d2")));
         assertEquals(roiNoir, m_echiquier.getPiece(new Position("e1")));
 
-        IPiece piece1 = m_echiquier.getPiece(new Position("b8"));
-        IPiece piece2 = m_echiquier.getPiece(new Position("h1"));
+        Piece piece1 = m_echiquier.getPiece(new Position("b8"));
+        Piece piece2 = m_echiquier.getPiece(new Position("h1"));
 
         assertNotNull(piece1);
         assertNotNull(piece2);
@@ -79,8 +76,8 @@ public class TestEchiquier extends TestCase {
         assertEquals('c', piece1.getRepresentation());
         assertEquals('T', piece2.getRepresentation());
 
-        IPiece piece3 = m_echiquier.getPiece(new Position(4, 5));
-        IPiece piece4 = m_echiquier.getPiece(new Position(7, 4));
+        Piece piece3 = m_echiquier.getPiece(new Position(4, 5));
+        Piece piece4 = m_echiquier.getPiece(new Position(7, 4));
 
         assertNull(piece3);
         assertNull(piece4);
@@ -100,7 +97,7 @@ public class TestEchiquier extends TestCase {
      * l'avoir mis à une place désirée.
      */
     public void testPlacerPiece() {
-        IPiece cavalierNoir = new Piece(NOIR, CAVALIER);
+        Piece cavalierNoir = Cavalier.creer(NOIR);
 
         assertTrue(m_echiquier.placerPiece(cavalierNoir, new Position("c5")));
         String echiquierAjout = "TXFDRFCT\n" +

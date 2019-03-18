@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static echec.classes.Piece.Couleur;
+import static echec.classes.Piece.Type;
 import static echec.classes.Piece.Couleur.BLANC;
 import static echec.classes.Piece.Couleur.NOIR;
 
@@ -35,10 +36,10 @@ public class Echiquier {
                         m_echiquier.put(new Position(x, y), obtenirPiecePositionDepart(x, NOIR));
                         break;
                     case 1:
-                        m_echiquier.put(new Position(x, y), obtenirPiecePositionDepart(x, NOIR));
+                        m_echiquier.put(new Position(x, y), Pion.creer(NOIR));
                         break;
                     case 6:
-                        m_echiquier.put(new Position(x, y), obtenirPiecePositionDepart(x, BLANC));
+                        m_echiquier.put(new Position(x, y), Pion.creer(BLANC));
                         break;
                     case 7:
                         m_echiquier.put(new Position(x, y), obtenirPiecePositionDepart(x, BLANC));
@@ -86,13 +87,12 @@ public class Echiquier {
      * @param p_type    le type de la pièce désirée
      * @return le nombre d'occurence de la pièce dans le jeu
      */
-    //TODO Changer ou garder un type?
     public int getNombrePieces(Couleur p_couleur, Type p_type) {
         //On fait un cast en int puisque on sait que le nombre total ne depassera jamais un int
         return (int) m_echiquier
                 .values()
                 .stream()
-                .filter(o -> o instanceof IPiece)
+                .filter(o -> o instanceof Piece)
                 .filter(p -> ((Piece) p).getCouleur() == p_couleur && ((Piece) p).getType() == p_type)
                 .count();
     }
@@ -107,7 +107,7 @@ public class Echiquier {
         return (int) m_echiquier
                 .values()
                 .stream()
-                .filter(o -> o instanceof IPiece)
+                .filter(o -> o instanceof Piece)
                 .count();
     }
 
@@ -120,8 +120,8 @@ public class Echiquier {
         return m_echiquier
                 .values()
                 .stream()
-                .filter(p -> p instanceof IPiece && ((IPiece) p).getCouleur() == p_couleur)
-                .mapToDouble(p -> ((IPiece) p).getForce())
+                .filter(p -> p instanceof Piece && ((Piece) p).getCouleur() == p_couleur)
+                .mapToDouble(p -> ((Piece) p).getForce())
                 .sum();
     }
 
@@ -133,9 +133,9 @@ public class Echiquier {
      * @return Le pion à la position donnée
      */
     @Nullable
-    public IPiece getPiece(Position p_position) {
+    public Piece getPiece(Position p_position) {
         Object obj = m_echiquier.get(p_position);
-        return obj instanceof IPiece ? ((IPiece) obj) : null;
+        return obj instanceof Piece ? ((Piece) obj) : null;
     }
 
     /**
@@ -161,8 +161,8 @@ public class Echiquier {
                 representationEchiquier.append('\n');
             }
 
-            if (valeur instanceof IPiece) {
-                representationEchiquier.append(((IPiece) valeur).getRepresentation());
+            if (valeur instanceof Piece) {
+                representationEchiquier.append(((Piece) valeur).getRepresentation());
             } else {
                 representationEchiquier.append('X');
             }
@@ -177,20 +177,20 @@ public class Echiquier {
      * @param p_piece            Piece a deplacer sur l'echiquier
      * @param p_nouvellePosition la position où on veut mettre la pièce
      */
-    public boolean placerPiece(IPiece p_piece, Position p_nouvellePosition) {
+    public boolean placerPiece(Piece p_piece, Position p_nouvellePosition) {
         //Pour linstant on retourne false si une piece est deja a la position souhaite
         if (m_echiquier.get(p_nouvellePosition) != null)
             return false;
         //NOTE : On doit faire un distinction entre deux piece de meme type/couleur.
         var result = m_echiquier.entrySet()
                 .stream()
-                .filter(p -> p.getValue() instanceof IPiece && p.getValue().equals(p_piece))
+                .filter(p -> p.getValue() instanceof Piece && p.getValue().equals(p_piece))
                 .findFirst();
 
         if (result.isPresent()) {
 
             Position anciennePosition = result.get().getKey();
-            IPiece piece = (IPiece) result.get().getValue();
+            Piece piece = (Piece) result.get().getValue();
 
             m_echiquier.replace(anciennePosition, null);
             m_echiquier.replace(p_nouvellePosition, piece);

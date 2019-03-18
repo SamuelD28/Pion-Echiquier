@@ -8,7 +8,7 @@ public class Cavalier extends Piece {
      * @param p_couleur Couleur du cavalier
      */
     private Cavalier(Couleur p_couleur) {
-        super(p_couleur, 'c');
+        super(p_couleur, Type.CAVALIER);
     }
 
     public static Cavalier creer(Couleur p_couleur) {

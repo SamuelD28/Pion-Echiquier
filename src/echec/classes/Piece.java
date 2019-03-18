@@ -10,9 +10,40 @@ import java.util.Objects;
  */
 public abstract class Piece {
     private final Couleur m_couleur;
-    private final char m_representation;
+    private final Type m_type;
 
-    //TODO TYPE serait Pertinant a préserver dans la classe??
+    /**
+     * Enum représentant les type de pièce dans un échiquier.
+     */
+    public enum Type {
+            PION('p', 1),
+            CAVALIER('c', 2.5),
+            FOU('f', 3),
+            TOUR('t', 5),
+            REINE('d', 9),
+            ROI('r', 0);
+
+            /**
+             * Représentation graphique de la pièce lors
+             * de l'affichage de l'échiquier
+             */
+            private final Character m_representation;
+            private final double m_force;
+
+            /**
+             * Constructeur de base pour l'enum Type.
+             * Prend en parametre la representation et la force
+             * associe a la piece
+             *
+             * @param p_representation Representation en caractere du type de piece
+             * @param p_force          Force associe au type de piece
+             */
+            Type(Character p_representation, double p_force) {
+                m_representation = p_representation;
+                m_force = p_force;
+            }
+        }
+
     /**
      * Enum représentant les couleurs qu'un pion peut avoir.
      */
@@ -27,9 +58,13 @@ public abstract class Piece {
      *
      * @param p_couleur Couleur de la piece
      */
-    protected Piece(Couleur p_couleur, char p_representation) {
+    protected Piece(Couleur p_couleur, Type p_type) {
         m_couleur = p_couleur;
-        m_representation = p_representation;
+        m_type = p_type;
+    }
+
+    public Type getType() {
+        return m_type;
     }
 
     /**
@@ -39,7 +74,7 @@ public abstract class Piece {
      * @return Le caractere associe a la piece
      */
     public char getRepresentation() {
-        return m_couleur == Couleur.BLANC ? m_representation : Character.toUpperCase(m_representation);
+        return m_couleur == Couleur.BLANC ? m_type.m_representation : Character.toUpperCase(m_type.m_representation);
     }
 
     /**
@@ -49,15 +84,7 @@ public abstract class Piece {
      * @return Sa force sous forme de double.
      */
     public double getForce() {
-        switch (m_representation) {
-            case 'r' : return 0;
-            case 'd' : return 9;
-            case 't' : return 5;
-            case 'f' : return 3;
-            case 'c' : return 2.5;
-            case 'p' : return 1;
-            default: return -1;
-        }
+        return m_type.m_force;
     }
 
     /**
@@ -96,8 +123,7 @@ public abstract class Piece {
      */
     @Override
     public int hashCode() {
-        // TODO Hash correctement?
-        return Objects.hash(m_couleur, m_representation);
+        return Objects.hash(m_couleur, m_type.m_representation);
     }
 
     /**
@@ -115,7 +141,6 @@ public abstract class Piece {
 
         if (obj instanceof Piece) {
             Piece piece = (Piece) obj;
-            // TODO ok?
             return piece.getCouleur() == getCouleur() && piece.getRepresentation() == getRepresentation();
         } else {
             return false;

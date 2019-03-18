@@ -8,7 +8,7 @@ public class Pion extends Piece {
      * @param p_couleur Couleur du piece
      */
     private Pion(Couleur p_couleur) {
-        super(p_couleur, 'p');
+        super(p_couleur, Type.PION);
     }
 
     public static Pion creer(Couleur p_couleur) {
