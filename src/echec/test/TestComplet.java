@@ -17,11 +17,7 @@ public class TestComplet extends TestCase {
      */
     public static TestSuite suite() {
         TestSuite suite = new TestSuite();
-        //Teste la classe Pion
-        //suite.addTestSuite(TestPiece.class);
-        //Teste la classe echiquier
         suite.addTestSuite(TestEchiquier.class);
-        //Teste la classe Position
         suite.addTestSuite(TestPosition.class);
         suite.addTestSuite(TestPion.class);
         suite.addTestSuite(TestTour.class);

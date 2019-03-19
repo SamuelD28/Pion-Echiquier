@@ -1,5 +1,11 @@
 package echec.classes;
 
+/**
+ * Classe de piece reine
+ *
+ * @author Samuel Colassin
+ * @author Samuel Dubé
+ */
 public class Reine extends Piece {
     /**
      * Constructeur de la reine prennant en parametre

@@ -1,5 +1,11 @@
 package echec.classes;
 
+/**
+ * Classe de piece pion
+ *
+ * @author Samuel Colassin
+ * @author Samuel Dubé
+ */
 public class Pion extends Piece {
     /**
      * Constructeur de piece prennant en parametre

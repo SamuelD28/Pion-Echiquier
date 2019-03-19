@@ -1,5 +1,11 @@
 package echec.classes;
 
+/**
+ * Classe de piece fou
+ *
+ * @author Samuel Colassin
+ * @author Samuel Dubé
+ */
 public class Fou extends Piece {
     /**
      * Constructeur de fou prennant en parametre

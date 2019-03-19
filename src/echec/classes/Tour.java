@@ -1,5 +1,11 @@
 package echec.classes;
 
+/**
+ * Classe de piece tour
+ *
+ * @author Samuel Colassin
+ * @author Samuel Dubé
+ */
 public class Tour extends Piece {
     /**
      * Constructeur de la tour prennant en parametre

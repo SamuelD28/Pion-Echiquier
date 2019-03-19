@@ -52,7 +52,7 @@ public class Echiquier {
         }
     }
 
-      /**
+    /**
      * Permet d'obtenir la pièce à mettre sur l'échiquier
      * selon la position dans celui-ci.
      *
