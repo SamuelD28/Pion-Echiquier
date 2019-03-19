@@ -1,4 +1,4 @@
-package echec.test;
+package echec.Test;
 
 import echec.classes.Piece;
 import echec.classes.Reine;

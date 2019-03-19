@@ -52,8 +52,7 @@ public class Echiquier {
         }
     }
 
-    //TODO Changer ou garder un type?
-    /**
+      /**
      * Permet d'obtenir la pièce à mettre sur l'échiquier
      * selon la position dans celui-ci.
      *
