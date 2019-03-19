@@ -1,4 +1,4 @@
-package echec.Test;
+package echec.test;
 
 import echec.classes.*;
 import echec.classes.Piece.Couleur;
@@ -25,7 +25,7 @@ public abstract class TestPiece extends TestCase {
     abstract protected Piece creerPiece(Couleur p_couleur);
 
     /**
-     * Test permettant de vérifier si on indique la
+     * test permettant de vérifier si on indique la
      * bonne force d'une pièce
      */
     public void testGetForce() {
@@ -35,7 +35,7 @@ public abstract class TestPiece extends TestCase {
     }
 
     /**
-     * Test poru verifier que les bonne valeurs ont
+     * test poru verifier que les bonne valeurs ont
      * etes associe au type de piece.
      */
     public void testType()

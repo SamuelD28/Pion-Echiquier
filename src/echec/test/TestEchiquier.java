@@ -130,4 +130,13 @@ public class TestEchiquier extends TestCase {
         m_echiquier = new Echiquier();
         assertEquals(REPRESENTATION_DEPART, m_echiquier.toString());
     }
+
+    public void testBougerPiece()
+    {
+        Piece piece = m_echiquier.getPiece(new Position(0,0));
+
+        Position deplacement1 = new Position(0,3);
+
+        m_echiquier.placerPiece(piece, deplacement1);
+    }
 }
