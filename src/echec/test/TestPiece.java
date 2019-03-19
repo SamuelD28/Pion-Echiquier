@@ -1,4 +1,4 @@
-package echec.test;
+package echec.Test;
 
 import echec.classes.*;
 import echec.classes.Piece.Couleur;
@@ -12,6 +12,7 @@ import static echec.classes.Piece.Couleur.*;
  * @author Samuel Dubé
  */
 public abstract class TestPiece extends TestCase {
+
     private Piece m_piece;
 
     public void setUp() {
@@ -61,16 +62,13 @@ public abstract class TestPiece extends TestCase {
         assertEquals('R', roi.getRepresentation());
     }
 
-    /**
-     * Test pour vérifier la couleur d'une piece
-     */
-    public void testCouleur() {
-        assertEquals(NOIR, m_piece.getCouleur());
-        Piece piece = Reine.creer(BLANC);
+    protected void testCouleur(Piece piece, Couleur couleurAttendu)
+    {
+        assertEquals(couleurAttendu, piece.getCouleur());
+        piece = Reine.creer(BLANC);
         assertEquals(BLANC, piece.getCouleur());
-        assertTrue(m_piece.estNoir());
         assertFalse(piece.estNoir());
-        assertFalse(m_piece.estBlanc());
+        assertTrue(piece.estBlanc());
     }
 }
 
