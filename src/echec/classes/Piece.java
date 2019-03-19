@@ -115,6 +115,8 @@ public abstract class Piece {
         return m_couleur;
     }
 
+
+
     /**
      * Method utilisee pour comparer
      * deux piece ensembles.
