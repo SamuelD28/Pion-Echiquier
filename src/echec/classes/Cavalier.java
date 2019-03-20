@@ -1,6 +1,18 @@
 package echec.classes;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import static echec.classes.Mouvement.TypeMouvement.EN_L;
+
+/**
+ * Classe de piece cavalier
+ *
+ * @author Samuel Colassin
+ * @author Samuel Dubé
+ */
 public class Cavalier extends Piece {
+    private final Mouvement m_mouvement = new Mouvement(3, new ArrayList<>(Arrays.asList(EN_L)));
+
     /**
      * Constructeur de cavalier prennant en parametre
      * la couleur.
@@ -13,5 +25,10 @@ public class Cavalier extends Piece {
 
     public static Cavalier creer(Couleur p_couleur) {
         return new Cavalier(p_couleur);
+    }
+
+    @Override
+    public Mouvement getMouvement() {
+        return m_mouvement;
     }
 }

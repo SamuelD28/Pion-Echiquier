@@ -1,6 +1,19 @@
 package echec.classes;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static echec.classes.Mouvement.TypeMouvement.DIAGONALE;
+
+/**
+ * Classe de piece fou
+ *
+ * @author Samuel Colassin
+ * @author Samuel Dubé
+ */
 public class Fou extends Piece {
+    private final Mouvement m_mouvement = new Mouvement(8, new ArrayList<>(Arrays.asList(DIAGONALE)));
+
     /**
      * Constructeur de fou prennant en parametre
      * la couleur.
@@ -13,5 +26,10 @@ public class Fou extends Piece {
 
     public static Fou creer(Couleur p_couleur) {
         return new Fou(p_couleur);
+    }
+
+    @Override
+    public Mouvement getMouvement() {
+        return m_mouvement;
     }
 }

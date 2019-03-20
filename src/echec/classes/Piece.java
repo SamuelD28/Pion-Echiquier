@@ -116,6 +116,13 @@ public abstract class Piece {
     }
 
 
+    /**
+     * Methode permettant d'obtenir le mouvement
+     * de la piece.
+     *
+     * @return Le mouvement associer a la piece
+     */
+    public abstract Mouvement getMouvement();
 
     /**
      * Method utilisee pour comparer
