@@ -25,6 +25,7 @@ public class TestComplet extends TestCase {
         suite.addTestSuite(TestFou.class);
         suite.addTestSuite(TestReine.class);
         suite.addTestSuite(TestRoi.class);
+        suite.addTestSuite(TestMouvement.class);
         return suite;
     }
 }

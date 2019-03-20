@@ -20,12 +20,8 @@ public class Tour extends Piece {
      *
      * @param p_couleur Couleur de la tour
      */
-    private Tour(Couleur p_couleur) {
+    public Tour(Couleur p_couleur) {
         super(p_couleur, Type.TOUR);
-    }
-
-    public static Tour creer(Couleur p_couleur) {
-        return new Tour(p_couleur);
     }
 
     @Override

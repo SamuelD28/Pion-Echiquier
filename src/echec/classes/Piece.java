@@ -58,7 +58,7 @@ public abstract class Piece {
      *
      * @param p_couleur Couleur de la piece
      */
-    protected Piece(Couleur p_couleur, Type p_type) {
+    Piece(Couleur p_couleur, Type p_type) {
         m_couleur = p_couleur;
         m_type = p_type;
     }

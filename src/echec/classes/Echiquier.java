@@ -63,7 +63,7 @@ public class Echiquier {
         switch (x) {
             case 0:
             case 7:
-                return Tour.creer(p_couleur);
+                return new Tour(p_couleur);
             case 1:
             case 6:
                 return Cavalier.creer(p_couleur);

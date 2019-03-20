@@ -1,10 +1,10 @@
 package echec.classes;
 
-import echec.classes.Mouvement.TypeMouvement;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static echec.classes.Mouvement.TypeMouvement.*;
+import static echec.classes.Mouvement.TypeMouvement.DIAGONALE;
+import static echec.classes.Mouvement.TypeMouvement.LATERAL;
 
 /**
  * Classe de piece roi
