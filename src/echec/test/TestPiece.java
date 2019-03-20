@@ -23,12 +23,6 @@ public abstract class TestPiece extends TestCase {
     abstract protected Piece creerPiece(Couleur p_couleur);
 
     /**
-     * Permet de tester les mouvements d'une piece.
-     */
-    //TODO N'est pas utilisé?
-    public abstract void testMouvement();
-
-    /**
      * Test la couleur d'une pièce
      */
     public void testCouleur() {

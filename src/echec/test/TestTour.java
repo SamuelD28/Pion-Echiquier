@@ -15,10 +15,6 @@ public class TestTour extends TestPiece {
         return new Tour(p_couleur);
     }
 
-    @Override
-    public void testMouvement() {
-    } //A implementer plus tard
-
     /**
      * Test la création et les caractéristiques
      */

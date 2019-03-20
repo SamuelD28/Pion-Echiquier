@@ -15,10 +15,6 @@ public class TestCavalier extends TestPiece {
         return new Cavalier(p_couleur);
     }
 
-    @Override
-    public void testMouvement() {
-    } //A implementer plus tard
-
     /**
      * Test la création et les caractéristiques
      */

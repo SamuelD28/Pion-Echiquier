@@ -26,7 +26,9 @@ public class TestReine extends TestPiece {
         assertEquals(Piece.Type.REINE, piece.getType());
     }
 
-    @Override
+    /**
+     * Permet de tester les mouvements d'une reine.
+     */
     public void testMouvement() {
         Piece reine = new Reine(NOIR);
 

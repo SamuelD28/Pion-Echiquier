@@ -15,10 +15,6 @@ public class TestPion extends TestPiece {
         return new Pion(p_couleur);
     }
 
-    @Override
-    public void testMouvement() {
-    } //A Implementer plus tard
-
     /**
      * Test la création et les caractéristiques
      */

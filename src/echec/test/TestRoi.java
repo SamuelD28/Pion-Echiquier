@@ -26,7 +26,9 @@ public class TestRoi extends TestPiece {
         assertEquals(Piece.Type.ROI, piece.getType());
     }
 
-    @Override
+    /**
+     * Permet de tester les mouvements d'un roi.
+     */
     public void testMouvement() {
         Piece roi = new Roi(NOIR);
 

@@ -15,10 +15,6 @@ public class TestFou extends TestPiece {
         return new Fou(p_couleur);
     }
 
-    @Override
-    public void testMouvement() {
-    } //A implementer plus tard
-
     /**
      * Test la création et les caractéristiques
      */
