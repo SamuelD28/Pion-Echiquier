@@ -13,7 +13,7 @@ import static echec.classes.Piece.Couleur.NOIR;
 public class TestReine extends TestPiece {
     @Override
     protected Piece creerPiece(Piece.Couleur p_couleur) {
-        return Reine.creer(p_couleur);
+        return new Reine(p_couleur);
     }
 
     /**
@@ -27,20 +27,19 @@ public class TestReine extends TestPiece {
     }
 
     @Override
-    public void testMouvement()
-    {
-        Piece reine = Reine.creer(NOIR);
+    public void testMouvement() {
+        Piece reine = new Reine(NOIR);
 
-        Mouvement deplacement = Mouvement.calculer(new Position(0,0), new Position(3,3));
+        Mouvement deplacement = Mouvement.calculer(new Position(0, 0), new Position(3, 3));
         assertTrue(reine.getMouvement().estValide(deplacement));
 
-        Mouvement deplacement2 = Mouvement.calculer(new Position(3, 5), new Position(7,5));
+        Mouvement deplacement2 = Mouvement.calculer(new Position(3, 5), new Position(7, 5));
         assertTrue(reine.getMouvement().estValide(deplacement2));
 
-        Mouvement deplacement3 = Mouvement.calculer(new Position(1,1), new Position(2,3));
+        Mouvement deplacement3 = Mouvement.calculer(new Position(1, 1), new Position(2, 3));
         assertFalse(reine.getMouvement().estValide(deplacement3));
 
-        Mouvement deplacement4 = Mouvement.calculer(new Position(2,2), new Position(5,7));
+        Mouvement deplacement4 = Mouvement.calculer(new Position(2, 2), new Position(5, 7));
         assertFalse(reine.getMouvement().estValide(deplacement4));
     }
 }

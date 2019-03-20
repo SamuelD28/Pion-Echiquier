@@ -9,6 +9,12 @@ import java.util.Arrays;
 
 import static echec.classes.Mouvement.TypeMouvement.*;
 
+/**
+ * Test de la classe Mouvement
+ *
+ * @author Samuel Colassin
+ * @author Samuel Dubé
+ */
 public class TestMouvement extends TestCase {
     /**
      * Test permettant de verifier que la creation
@@ -34,19 +40,18 @@ public class TestMouvement extends TestCase {
      * de la classe mouvement pour determiner si un deplacement
      * est conforme a la configuration du mouvement
      */
-    public void testEstValide()
-    {
+    public void testEstValide() {
         Mouvement mouvement = new Mouvement(8, new ArrayList<>(Arrays.asList(DIAGONALE)));
 
-        Mouvement deplacementValide = Mouvement.calculer(new Position(0,0), new Position(5,5));
-        Mouvement deplacementInvalide = Mouvement.calculer(new Position(0,0), new Position(5,4));
+        Mouvement deplacementValide = Mouvement.calculer(new Position(0, 0), new Position(5, 5));
+        Mouvement deplacementInvalide = Mouvement.calculer(new Position(0, 0), new Position(5, 4));
 
         assertTrue(mouvement.estValide(deplacementValide));
         assertFalse(mouvement.estValide(deplacementInvalide));
 
         Mouvement mouvement1 = new Mouvement(8, new ArrayList<>(Arrays.asList(LATERAL)));
-        Mouvement deplacementValide1 = Mouvement.calculer(new Position(0,0), new Position(0,5));
-        Mouvement deplacementInvalide1 = Mouvement.calculer(new Position(0,0), new Position(1,5));
+        Mouvement deplacementValide1 = Mouvement.calculer(new Position(0, 0), new Position(0, 5));
+        Mouvement deplacementInvalide1 = Mouvement.calculer(new Position(0, 0), new Position(1, 5));
 
         assertTrue(mouvement1.estValide(deplacementValide1));
         assertFalse(mouvement.estValide(deplacementInvalide1));
@@ -56,22 +61,21 @@ public class TestMouvement extends TestCase {
      * Test permettant de verifier que la methode permettant
      * de calculer le mouvement avec deux position.
      */
-    public void testCalculer()
-    {
-        Mouvement mouvement = Mouvement.calculer(new Position(0,0), new Position(0,5));
+    public void testCalculer() {
+        Mouvement mouvement = Mouvement.calculer(new Position(0, 0), new Position(0, 5));
 
         assertEquals(5, mouvement.getPasMaximum());
         assertEquals(1, mouvement.getPasMinimum());
         assertTrue(mouvement.getTypesMouvement().contains(LATERAL));
         assertFalse(mouvement.getTypesMouvement().contains(EN_L));
 
-        mouvement = Mouvement.calculer(new Position(1,1), new Position(5,5));
+        mouvement = Mouvement.calculer(new Position(1, 1), new Position(5, 5));
         assertEquals(4, mouvement.getPasMaximum());
         assertEquals(1, mouvement.getPasMinimum());
         assertTrue(mouvement.getTypesMouvement().contains(DIAGONALE));
         assertFalse(mouvement.getTypesMouvement().contains(LATERAL));
 
-        mouvement = Mouvement.calculer(new Position(0,0), new Position(3,7));
+        mouvement = Mouvement.calculer(new Position(0, 0), new Position(3, 7));
         assertTrue(mouvement.getTypesMouvement().contains(NON_VALIDE));
     }
 }

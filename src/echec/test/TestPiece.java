@@ -3,6 +3,7 @@ package echec.test;
 import echec.classes.*;
 import echec.classes.Piece.Couleur;
 import junit.framework.TestCase;
+
 import static echec.classes.Piece.Couleur.*;
 
 /**
@@ -24,6 +25,7 @@ public abstract class TestPiece extends TestCase {
     /**
      * Permet de tester les mouvements d'une piece.
      */
+    //TODO N'est pas utilisé?
     public abstract void testMouvement();
 
     /**

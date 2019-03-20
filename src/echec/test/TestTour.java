@@ -16,7 +16,8 @@ public class TestTour extends TestPiece {
     }
 
     @Override
-    public void testMouvement() {} //A implementer plus tard
+    public void testMouvement() {
+    } //A implementer plus tard
 
     /**
      * Test la création et les caractéristiques

@@ -36,10 +36,10 @@ public class Echiquier {
                         m_echiquier.put(new Position(x, y), obtenirPiecePositionDepart(x, NOIR));
                         break;
                     case 1:
-                        m_echiquier.put(new Position(x, y), Pion.creer(NOIR));
+                        m_echiquier.put(new Position(x, y), new Pion(NOIR));
                         break;
                     case 6:
-                        m_echiquier.put(new Position(x, y), Pion.creer(BLANC));
+                        m_echiquier.put(new Position(x, y), new Pion(BLANC));
                         break;
                     case 7:
                         m_echiquier.put(new Position(x, y), obtenirPiecePositionDepart(x, BLANC));
@@ -66,14 +66,14 @@ public class Echiquier {
                 return new Tour(p_couleur);
             case 1:
             case 6:
-                return Cavalier.creer(p_couleur);
+                return new Cavalier(p_couleur);
             case 2:
             case 5:
-                return Fou.creer(p_couleur);
+                return new Fou(p_couleur);
             case 3:
-                return Reine.creer(p_couleur);
+                return new Reine(p_couleur);
             case 4:
-                return Roi.creer(p_couleur);
+                return new Roi(p_couleur);
             default:
                 throw new IllegalArgumentException();
         }

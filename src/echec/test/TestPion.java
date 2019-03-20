@@ -12,11 +12,12 @@ import echec.classes.Pion;
 public class TestPion extends TestPiece {
     @Override
     protected Piece creerPiece(Piece.Couleur p_couleur) {
-        return Pion.creer(p_couleur);
+        return new Pion(p_couleur);
     }
 
     @Override
-    public void testMouvement() {} //A Implementer plus tard
+    public void testMouvement() {
+    } //A Implementer plus tard
 
     /**
      * Test la création et les caractéristiques

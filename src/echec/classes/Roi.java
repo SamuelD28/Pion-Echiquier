@@ -21,12 +21,8 @@ public class Roi extends Piece {
      *
      * @param p_couleur Couleur du roi
      */
-    private Roi(Couleur p_couleur) {
+    public Roi(Couleur p_couleur) {
         super(p_couleur, Type.ROI);
-    }
-
-    public static Roi creer(Couleur p_couleur) {
-        return new Roi(p_couleur);
     }
 
     @Override

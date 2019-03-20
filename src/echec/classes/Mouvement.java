@@ -14,7 +14,7 @@ public class Mouvement {
      * Enum permettant de specifier quel type
      * de mouvement est accepter pour la piece
      */
-    public enum TypeMouvement{
+    public enum TypeMouvement {
         DIAGONALE,
         LATERAL,
         EN_L,
@@ -25,11 +25,12 @@ public class Mouvement {
     private final int m_pasMaximum;
     private final ArrayList<TypeMouvement> m_typesMouvement;
     private final boolean m_colisionActive;
+
     /**
      * Constructeur permettant de creer une nouvelle
      * configuration de mouvement
      *
-     * @param p_pasMaximum Nombre de pas maximum alloue
+     * @param p_pasMaximum    Nombre de pas maximum alloue
      * @param p_typeMouvement Listes de type de mouvement alloue
      */
     public Mouvement(int p_pasMaximum, ArrayList<TypeMouvement> p_typeMouvement) {
@@ -46,19 +47,17 @@ public class Mouvement {
      * @param p_mouvement Mouvement a verifier
      * @return Vrai si le mouvement peut etre effectuer
      */
-    public boolean estValide(Mouvement p_mouvement)
-    {
+    public boolean estValide(Mouvement p_mouvement) {
         boolean estValide;
 
-        for(TypeMouvement typeMouvement : p_mouvement.m_typesMouvement)
-        {
+        for (TypeMouvement typeMouvement : p_mouvement.m_typesMouvement) {
             estValide = m_typesMouvement.contains(typeMouvement);
-            if(!estValide) return false;
+            if (!estValide) return false;
         }
 
         estValide = p_mouvement.m_pasMaximum <= m_pasMaximum &&
-                    p_mouvement.m_pasMinimum >= m_pasMinimum &&
-                    p_mouvement.m_colisionActive == m_colisionActive;
+                p_mouvement.m_pasMinimum >= m_pasMinimum &&
+                p_mouvement.m_colisionActive == m_colisionActive;
 
         return estValide;
     }
@@ -68,26 +67,24 @@ public class Mouvement {
      * en se basant sur deux positions donnes.
      *
      * @param p_depart Position de depart
-     * @param p_fin Position de fin
+     * @param p_fin    Position de fin
      * @return Le mouvement calculer
      */
-    public static Mouvement calculer(Position p_depart, Position p_fin)
-    {
+    public static Mouvement calculer(Position p_depart, Position p_fin) {
         ArrayList<TypeMouvement> typesMouvement = new ArrayList<>();
 
-        int differenceX =  Math.abs(p_depart.getX() - p_fin.getX());
+        int differenceX = Math.abs(p_depart.getX() - p_fin.getX());
         int differenceY = Math.abs(p_depart.getY() - p_fin.getY());
         int pasMaximum = differenceX + differenceY;
 
-        if(differenceX == 0 || differenceY == 0)
+        if (differenceX == 0 || differenceY == 0)
             typesMouvement.add(TypeMouvement.LATERAL);
-        else if((differenceX == 1 && differenceY == 2) || (differenceY == 1 && differenceX == 2))
+        else if ((differenceX == 1 && differenceY == 2) || (differenceY == 1 && differenceX == 2))
             typesMouvement.add(TypeMouvement.EN_L);
-        else if(differenceY > 0 && differenceX == differenceY){
+        else if (differenceY > 0 && differenceX == differenceY) {
             pasMaximum = differenceX;
             typesMouvement.add(TypeMouvement.DIAGONALE);
-        }
-        else
+        } else
             typesMouvement.add(TypeMouvement.NON_VALIDE);
 
         return new Mouvement(pasMaximum, typesMouvement);

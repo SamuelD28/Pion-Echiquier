@@ -12,11 +12,12 @@ import echec.classes.Piece;
 public class TestCavalier extends TestPiece {
     @Override
     protected Piece creerPiece(Piece.Couleur p_couleur) {
-        return Cavalier.creer(p_couleur);
+        return new Cavalier(p_couleur);
     }
 
     @Override
-    public void testMouvement() {} //A implementer plus tard
+    public void testMouvement() {
+    } //A implementer plus tard
 
     /**
      * Test la création et les caractéristiques

@@ -2,6 +2,7 @@ package echec.classes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
 import static echec.classes.Mouvement.TypeMouvement.EN_L;
 
 /**
@@ -19,12 +20,8 @@ public class Cavalier extends Piece {
      *
      * @param p_couleur Couleur du cavalier
      */
-    private Cavalier(Couleur p_couleur) {
+    public Cavalier(Couleur p_couleur) {
         super(p_couleur, Type.CAVALIER);
-    }
-
-    public static Cavalier creer(Couleur p_couleur) {
-        return new Cavalier(p_couleur);
     }
 
     @Override

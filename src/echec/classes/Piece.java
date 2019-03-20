@@ -16,33 +16,33 @@ public abstract class Piece {
      * Enum représentant les type de pièce dans un échiquier.
      */
     public enum Type {
-            PION('p', 1),
-            CAVALIER('c', 2.5),
-            FOU('f', 3),
-            TOUR('t', 5),
-            REINE('d', 9),
-            ROI('r', 0);
+        PION('p', 1),
+        CAVALIER('c', 2.5),
+        FOU('f', 3),
+        TOUR('t', 5),
+        REINE('d', 9),
+        ROI('r', 0);
 
-            /**
-             * Représentation graphique de la pièce lors
-             * de l'affichage de l'échiquier
-             */
-            private final Character m_representation;
-            private final double m_force;
+        /**
+         * Représentation graphique de la pièce lors
+         * de l'affichage de l'échiquier
+         */
+        private final Character m_representation;
+        private final double m_force;
 
-            /**
-             * Constructeur de base pour l'enum Type.
-             * Prend en parametre la representation et la force
-             * associe a la piece
-             *
-             * @param p_representation Representation en caractere du type de piece
-             * @param p_force          Force associe au type de piece
-             */
-            Type(Character p_representation, double p_force) {
-                m_representation = p_representation;
-                m_force = p_force;
-            }
+        /**
+         * Constructeur de base pour l'enum Type.
+         * Prend en parametre la representation et la force
+         * associe a la piece
+         *
+         * @param p_representation Representation en caractere du type de piece
+         * @param p_force          Force associe au type de piece
+         */
+        Type(Character p_representation, double p_force) {
+            m_representation = p_representation;
+            m_force = p_force;
         }
+    }
 
     /**
      * Enum représentant les couleurs qu'un pion peut avoir.

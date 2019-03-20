@@ -61,8 +61,8 @@ public class TestEchiquier extends TestCase {
      * dans l'échiquier.
      */
     public void testGetPiece() {
-        Piece pionNoir = Pion.creer(NOIR);
-        Piece roiNoir = Roi.creer(NOIR);
+        Piece pionNoir = new Pion(NOIR);
+        Piece roiNoir = new Roi(NOIR);
 
         assertEquals(pionNoir, m_echiquier.getPiece(new Position("d2")));
         assertEquals(roiNoir, m_echiquier.getPiece(new Position("e1")));
@@ -97,7 +97,7 @@ public class TestEchiquier extends TestCase {
      * l'avoir mis à une place désirée.
      */
     public void testPlacerPiece() {
-        Piece cavalierNoir = Cavalier.creer(NOIR);
+        Piece cavalierNoir = new Cavalier(NOIR);
 
         assertTrue(m_echiquier.placerPiece(cavalierNoir, new Position("c5")));
         String echiquierAjout = "TXFDRFCT\n" +
